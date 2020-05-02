@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 const path = require('path')
 const morgan = require('morgan')
 const dotenv = require('dotenv').config()
-const port = process.env.PORT || 8000
+const port = 4000
 mongoose
   .connect(
     process.env.MONGODB_URI || process.env.MONGO_DATABASE,
