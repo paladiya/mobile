@@ -1,0 +1,57 @@
+.parent-fileupload {
+	display: flex;
+	flex-direction: column;
+}
+.btn-submit {
+	align-self: center;
+	width: min-content;
+}
+
+.tag {
+	width: min-content;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	color: white;
+	border-radius: 10px;
+	padding: 5px;
+	font-size: 18px;
+	margin: 3px;
+}
+.tag-list {
+	margin-bottom: 5px;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+}
+
+.preview {
+	object-fit: cover;
+	height: 250px;
+	margin: auto;
+	width: 100%;
+	padding: 0 !important;
+}
+
+.cat-parent {
+	margin-top: 5px;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+
+	.cat {
+		cursor: pointer;
+		color: white;
+		margin: 3px;
+		padding: 8px;
+		$repeat: 50; // 10 iterations
+		& {
+			@for $i from 1 through $repeat {
+				&:nth-child(#{$i}) {
+					background-color: rgb(random(255), random(255), random(255)) !important;
+				}
+			}
+		}
+	}
+}

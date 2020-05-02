@@ -1,0 +1,16 @@
+.navigation {
+	padding: 0px !important;
+	margin: 0px !important;
+
+	.tab {
+		font-weight: 500;
+		padding: 8px;
+		margin: 4px;
+		border-radius: 10px;
+		font-size: 15px;
+		.text {
+			color: white;
+			text-decoration: none;
+		}
+	}
+}

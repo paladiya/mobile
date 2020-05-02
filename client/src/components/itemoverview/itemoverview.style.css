@@ -1,0 +1,50 @@
+.parent {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+.parent .header-parent {
+  align-items: center;
+  justify-content: space-between;
+}
+.parent .left {
+  display: flex;
+  flex-direction: column;
+}
+.parent .img-profile {
+  width: 60px;
+  height: 60px;
+}
+.parent .img-main {
+  padding: 20px;
+  max-height: 80vh;
+  border-radius: 5px;
+  border: 1px white;
+  align-self: center;
+  object-fit: cover;
+  object-position: center;
+}
+.parent .user-text {
+  text-transform: capitalize;
+  font-weight: 400;
+}
+.parent .file-text {
+  max-width: 12ch;
+  text-transform: camelCase;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  -webkit-line-clamp: 1;
+}
+.parent .tagBadge {
+  width: fit-content;
+  padding: 8px;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  margin-right: 5px;
+}
+.parent .tag-row {
+  display: flex;
+  flex-flow: row wrap;
+}

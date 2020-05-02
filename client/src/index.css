@@ -1,0 +1,21 @@
+body {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+html {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.divider {
+	box-shadow: 0px 0px 5px black;
+	height: 1px;
+	width: 100%;
+	display: block; /* for use on default inline elements like span */
+	margin: 9px 0;
+	overflow: hidden;
+	background-color: #e5e5e5;
+}

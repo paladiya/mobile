@@ -1,0 +1,18 @@
+.parent-fileupload {
+	.pre-parent {
+		display: flex;
+		flex-direction: row;
+		flex-flow: row wrap;
+
+		.preview {
+			object-fit: cover;
+			height: 250px;
+			margin: 5px;
+			width: inherit;
+		}
+	}
+}
+input[type='file'],
+input[type='file']::-webkit-file-upload-button {
+	cursor: pointer;
+}

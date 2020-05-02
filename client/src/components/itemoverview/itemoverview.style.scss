@@ -1,0 +1,54 @@
+.parent {
+	display: flex;
+	flex-direction: column;
+	overflow-x: hidden;
+
+	.header-parent {
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.left {
+		display: flex;
+		flex-direction: column;
+	}
+	.img-profile {
+		width: 60px;
+		height: 60px;
+	}
+	.img-main {
+		padding: 20px;
+		max-height: 80vh;
+		border-radius: 5px;
+		border: 1px white;
+		align-self: center;
+		object-fit: cover;
+		object-position: center;
+	}
+	.user-text {
+		text-transform: capitalize;
+		font-weight: 400;
+	}
+
+	.file-text {
+		max-width: 12ch;
+		text-transform: camelCase;
+		white-space: nowrap;
+		overflow: hidden;
+		display: block;
+		-webkit-line-clamp: 1;
+	}
+
+	.tagBadge {
+		width: fit-content;
+		padding: 8px;
+		margin: 5px;
+		cursor: pointer;
+		font-size: 15px;
+		margin-right: 5px;
+	}
+	.tag-row {
+		display: flex;
+		flex-flow: row wrap;
+	}
+}

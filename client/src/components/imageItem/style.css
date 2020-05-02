@@ -1,0 +1,10 @@
+#directory-item {
+  height: 300px;
+  background-color: 0;
+}
+#directory-item .img-cover {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 400px;
+}

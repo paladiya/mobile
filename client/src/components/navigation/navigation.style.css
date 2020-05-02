@@ -1,0 +1,15 @@
+.navigation {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+.navigation .tab {
+  font-weight: 500;
+  padding: 8px;
+  margin: 4px;
+  border-radius: 10px;
+  font-size: 15px;
+}
+.navigation .tab .text {
+  color: white;
+  text-decoration: none;
+}

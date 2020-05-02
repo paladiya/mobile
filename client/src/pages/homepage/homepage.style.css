@@ -1,0 +1,9 @@
+.homepage {
+	text-justify: center;
+	display: block;
+	overflow: hidden;
+}
+.slider {
+	z-index: 1000;
+	background-color: transparent;
+}
