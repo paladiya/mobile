@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
 
 import { Link } from 'react-router-dom'
-import BackImg from '../../assets/img/sunburst.gif'
 import PlayImg from '../../assets/img/play.png'
 import PauseImg from '../../assets/img/pause.png'
 import { createStructuredSelector } from 'reselect'

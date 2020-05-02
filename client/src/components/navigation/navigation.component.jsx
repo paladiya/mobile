@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import './navigation.style.css'
-import { Link, withRouter, Route, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setCategory } from '../../redux/category/cat-action'
-import { useRouteMatch } from 'react-router-dom'
 import DirectoryComponent from '../../components/directory/directory.component'
 
 class NavigationComponent extends Component {

@@ -5,9 +5,8 @@ import Progress from '../progress/progress.component'
 import { connect } from 'react-redux'
 import './style.scss'
 import Header from '../header/header.component'
-import { Redirect, withRouter } from 'react-router'
+import { withRouter } from 'react-router'
 import { all } from '../../data'
-import UserGallery from '../userGallery'
 
 class MultipleUpload extends Component {
   constructor (props) {
@@ -288,7 +287,6 @@ class MultipleUpload extends Component {
           />
         </form>
         <hr className='divider mt-5' />
-        <UserGallery />
       </div>
     )
   }

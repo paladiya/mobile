@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './slider.style.scss'
 import { connect } from 'react-redux'
 import { toggleSlider } from '../../redux/slider/slide-action'
-import { Route, Redirect, NavLink, withRouter } from 'react-router-dom'
+import {  withRouter } from 'react-router-dom'
 import { doLogout } from '../../redux/user/user-action'
 import { setCategory } from '../../redux/category/cat-action'
 

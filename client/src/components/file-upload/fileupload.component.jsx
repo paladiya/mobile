@@ -6,10 +6,7 @@ import { connect } from 'react-redux'
 import './fileupload.style.scss'
 import Header from '../header/header.component'
 import { Redirect, withRouter } from 'react-router'
-import ImageItem from '../imageItem'
-import MusicItem from '../musicItem'
 import { all } from '../../data'
-import UserGallery from '../userGallery'
 
 class FileuploadComponent extends Component {
   constructor (props) {

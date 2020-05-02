@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import LOGO from '../../assets/img/logo.png'
 import './header.style.scss'
-import toggleReducer from '../../redux/slider/slide-action'
 import { toggleSlider } from '../../redux/slider/slide-action'
 import SliderComponent from '../../components/slider/slider.component'
 import { Link, withRouter, Redirect } from 'react-router-dom'

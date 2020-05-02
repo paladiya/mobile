@@ -8,7 +8,6 @@ import { createStructuredSelector } from 'reselect'
 import HomepageComponent from './pages/homepage/homepage.component'
 import ItemOverViewComponent from './components/itemoverview/itemoverview.component'
 import UploadPage from './pages/uploadpage/upload.page'
-import SigninPage from './pages/signinpage/signin.page'
 import { connect } from 'react-redux'
 import { selectCat } from './redux/category/cat-selector'
 import Page404 from './components/page404'
@@ -16,7 +15,6 @@ import FindComponent from './components/find/index'
 import MultipleUploadPage from './pages/multipleUploadPage/multipleUploadPage'
 import signupComponent from './components/signup/signup.component'
 import signinComponent from './components/signin/signin.component'
-import Test from './components/test'
 
 class App extends React.Component {
   constructor (props) {
@@ -34,6 +32,7 @@ class App extends React.Component {
   }
 
   render () {
+    console.log(process.env.PUBLIC_URL)
     return (
       <div className='App container'>
         <Switch>

@@ -11,13 +11,10 @@ import { setCategory } from '../../redux/category/cat-action'
 import { connect } from 'react-redux'
 // import Promise from 'react-promise'
 import MusicItem from '../musicItem'
-import ImageItem from '../imageItem'
 import SharePopup from '../sharePopUp'
 import { withRouter } from 'react-router'
 import Loading from '../loading'
-import MusicPlay from '../../assets/img/sunburst.gif'
 
-import $ from 'jquery'
 import ImageOverView from '../imageoverview'
 class ItemOverViewComponent extends Component {
   constructor (props) {
@@ -166,10 +163,10 @@ class ItemOverViewComponent extends Component {
               hide={this.hide}
               img={
                 this.state.post.types == 'image'
-                  ? process.env.PUBLIC_URL +
+                  ? window.location.href +
                     `/api/${this.state.post.types}/` +
                     this.state.post.fileName
-                  : MusicPlay
+                  : window.location.href + 'original.png'
               }
             />
           )}

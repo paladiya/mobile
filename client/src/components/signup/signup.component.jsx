@@ -1,8 +1,6 @@
 import React from 'react'
 import './signup.style.scss'
 import {
-  auth,
-  createUserProfileDocument,
   SignupWithEmail
 } from '../../firebase/firebase.util'
 import { setCurrentUser } from '../../redux/user/user-action'
