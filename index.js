@@ -9,11 +9,17 @@ const dotenv = require('dotenv').config()
 var compression = require('compression')
 
 const port = 4000
+options = {
+  useNewUrlParser: true,
+  auth: {
+    authSource: 'admin'
+  },
+  user: 'gautam',
+  pass: 'Gautampatel@0261'
+}
 mongoose
-  .connect(
-    process.env.MONGODB_URI || process.env.MONGO_DATABASE,
-    { useNewUrlParser: true },
-    () => console.log('mongoconnected')
+  .connect(process.env.MONGODB_URI || process.env.MONGO_DATABASE, options, () =>
+    console.log('mongoconnected')
   )
   .catch(error => {
     console.error('App starting error:', error.stack)

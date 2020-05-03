@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PureComponent } from 'react'
 import HeaderComponent from '../header/header.component'
 import { setCategory } from '../../redux/category/cat-action'
 import ImageItem from '../imageItem'
@@ -8,7 +8,7 @@ import Axios from 'axios'
 import Loading from '../loading'
 import Page404 from '../page404'
 
-class FindComponent extends Component {
+class FindComponent extends PureComponent {
   constructor (props) {
     super(props)
     this.state = {
@@ -47,6 +47,7 @@ class FindComponent extends Component {
   }
 
   componentDidMount () {
+    console.log('find compoent did update')
     this.fetchData()
   }
 
@@ -108,6 +109,9 @@ class FindComponent extends Component {
       return (
         <div>
           <HeaderComponent />
+          <h5 className='mt-3 font-weight-bold text-muted'>
+            {this.state.searchTerm} Ringtones and Wallpaper
+          </h5>
           <Loading />
         </div>
       )
@@ -115,6 +119,9 @@ class FindComponent extends Component {
       return (
         <div>
           <HeaderComponent />
+          <h5 className='mt-3 font-weight-bold text-muted'>
+            {this.state.searchTerm} Ringtones and Wallpaper
+          </h5>
           <Page404
             title='Items not found'
             description='The item you are looking for might have been removed or had its name changed or is temporarily unavailable.'

@@ -15,7 +15,7 @@ class Header extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      searchTerm: this.props.match.params.searchTerm
+      searchTerm: ''
     }
   }
 
@@ -34,12 +34,12 @@ class Header extends Component {
   handleInputChange = e => {
     console.log(e.target.value)
     this.setState({ searchTerm: e.target.value.trim() })
-    // if (e.target.value.trim() !== '') {
-    //   this.props.doSearch(e.target.value)
-    // } else {
-    //   this.props.doSearch('')
-    //   this.props.setCategory('all')
-    // }
+    if (e.target.value.trim() !== '') {
+      this.props.doSearch(e.target.value)
+    } else {
+      this.props.doSearch('')
+      this.props.setCategory('all')
+    }
   }
 
   render () {
@@ -63,7 +63,6 @@ class Header extends Component {
             <input
               type='text'
               placeholder='Search Wallpaper and Ringtones'
-              name='search'
               className='search form-control'
               onKeyPress={this.handleKeyPress}
               onChange={this.handleInputChange}
@@ -85,8 +84,7 @@ class Header extends Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  isToggle: selectIsToggle,
-  searchTerm: selectSearchTerm
+  isToggle: selectIsToggle
 })
 
 const mapDispatchToProps = dispatch => ({

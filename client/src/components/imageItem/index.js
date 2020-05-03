@@ -33,25 +33,11 @@ class ImageItem extends Component {
   }
 
   componentDidMount () {
-    console.log('image fetch')
-    // Axios.get(`/api/image/${this.props.item.fileName}`).then(res => {
-    //   this.setState({
-    //     images: res.images,
-    //     isLoading: false
-    //   })
-    // })
+    
   }
 
   render () {
-    var backImage = {
-      backgroundImage:
-        'url(' +
-        process.env.PUBLIC_URL +
-        '/uploads/image/' +
-        this.props.item.fileName +
-        ')'
-    }
-    //
+    
     return (
       <div className={`${this.props.col} list-item align-self-center`}>
         <Link

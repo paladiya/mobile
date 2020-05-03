@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.css'
-import { withRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { withRouter, Switch, Route } from 'react-router-dom'
 import { selectCurretnUser } from './redux/user/user-selector'
 import { setCurrentUser } from './redux/user/user-action'
 import { createStructuredSelector } from 'reselect'
