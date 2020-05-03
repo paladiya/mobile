@@ -34,9 +34,10 @@ class App extends React.Component {
   render () {
     console.log(process.env.PUBLIC_URL)
     return (
-      <div className='App container'>
+      <div className='App container-md'>
         <Switch>
           <Route exact path='/' component={HomepageComponent} />
+          <Route exact path='/cat/:catId' component={HomepageComponent} />
           <Route path='/fileupload' component={UploadPage} />
           <Route path='/find/:searchTerm' component={FindComponent} />
           <Route path='/signin' component={signinComponent} />

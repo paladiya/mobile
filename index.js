@@ -6,6 +6,8 @@ const bodyParser = require('body-parser')
 const path = require('path')
 const morgan = require('morgan')
 const dotenv = require('dotenv').config()
+var compression = require('compression')
+
 const port = 4000
 mongoose
   .connect(
@@ -21,6 +23,7 @@ mongoose
 const authRoutes = require('./routers/auth')
 const postRoutes = require('./routers/post')
 const fileRoutes = require('./routers/fileupload')
+const imageRoutes = require('./routers/imageManipulate')
 app.use(express.json())
 
 app.use(bodyParser.json({ type: 'application/json' }))
@@ -29,6 +32,7 @@ app.use(bodyParser({ keepExtensions: true }))
 
 app.use(express.static('uploads'))
 app.use(morgan('dev'))
+app.use(compression())
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
@@ -40,6 +44,7 @@ app.use(fileUpload())
 app.use('/user', authRoutes)
 app.use('/post', postRoutes)
 app.use('/file', fileRoutes)
+app.use('/image', imageRoutes)
 
 if (process.env.NODE_ENV === 'production') {
   console.log(process.env.NODE_ENV)

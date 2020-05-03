@@ -5,10 +5,14 @@ import { createStructuredSelector } from 'reselect'
 import { selectCurretnUser } from '../../redux/user/user-selector'
 import Axios from 'axios'
 import Img from 'react-image'
-import {  GridLoader } from 'react-spinners'
+import { GridLoader } from 'react-spinners'
 class ImageItem extends Component {
   constructor (props) {
     super(props)
+    this.state = {
+      isLoading: false,
+      image: ''
+    }
   }
 
   deleteImage = async id => {
@@ -26,6 +30,16 @@ class ImageItem extends Component {
       return id
     }
     console.log(result)
+  }
+
+  componentDidMount () {
+    console.log('image fetch')
+    // Axios.get(`/api/image/${this.props.item.fileName}`).then(res => {
+    //   this.setState({
+    //     images: res.images,
+    //     isLoading: false
+    //   })
+    // })
   }
 
   render () {
@@ -50,12 +64,7 @@ class ImageItem extends Component {
           <div className='card border-red'>
             <Img
               className='img-cover card-img'
-              src={
-                process.env.PUBLIC_URL +
-                `/api/${this.props.item.types}/` +
-                this.props.item.fileName
-              }
-             
+              src={`/api/${this.props.item.types}/resize/${this.props.item.fileName}`}
               loader={<GridLoader size={20} margin={10} />}
               unloader={<GridLoader size={20} margin={10} />}
             />
@@ -70,7 +79,6 @@ class ImageItem extends Component {
                     this.props.updateGallery(deleteId)
                   }}
                   className='fa fa-times fa-2x btn-close'
-                
                 ></i>
               )}
             </div>

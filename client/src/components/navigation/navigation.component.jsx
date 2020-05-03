@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import './navigation.style.css'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setCategory } from '../../redux/category/cat-action'
 import DirectoryComponent from '../../components/directory/directory.component'
+import { Route } from 'react-router-dom'
 
 class NavigationComponent extends Component {
   constructor (props) {
@@ -15,6 +16,7 @@ class NavigationComponent extends Component {
     console.log(index)
     this.setState({ activeIndex: index })
     this.props.setCategory(name.toLowerCase())
+    this.props.history.push(`/cat/${name.toLowerCase()}`)
   }
 
   render () {

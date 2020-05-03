@@ -8,6 +8,13 @@ body {
 }
 .brand-wrapper .logo {
   height: 60px;
+  cursor: pointer;
+}
+.close {
+  position: absolute;
+  z-index: 99;
+  right: 0px;
+  top: 0px;
 }
 .login-card {
   border: 0;

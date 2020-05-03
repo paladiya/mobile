@@ -7,7 +7,6 @@ import { createStructuredSelector } from 'reselect'
 import { connect } from 'react-redux'
 import { selectIsPlaying, selectItemId } from '../../redux/play/play-selector'
 import { play, pause } from '../../redux/play/play-action'
-
 import MusicPause from '../../assets/img/music.gif'
 import MusicPlay from '../../assets/img/sunburst.gif'
 import { selectCurretnUser } from '../../redux/user/user-selector'
@@ -68,6 +67,7 @@ class MusicItem extends Component {
     return (
       <div className={`${this.props.col}  list-item align-self-center`}>
         <audio
+          preload='auto'
           ref={audio => (this.audio = audio)}
           id='audio'
           src={

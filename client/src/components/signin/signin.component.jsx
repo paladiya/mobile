@@ -5,7 +5,7 @@ import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setCurrentUser } from '../../redux/user/user-action'
 import Message from '../message'
-import Login from '../../assets/img/login.jpg'
+import Login from '../../assets/img/login.webp'
 import Logo from '../../assets/img/logo.png'
 import ParentLoading from '../parentLoading'
 
@@ -109,10 +109,21 @@ class SignIn extends React.Component {
               <div className='col-md-5'>
                 <img src={Login} alt='login' className='login-card-img' />
               </div>
+              <div className='close'>
+                <i
+                  className='fa fa-times-circle fa-2x '
+                  onClick={() => this.props.history.replace('/')}
+                ></i>
+              </div>
               <div className='col-md-7'>
                 <div className='card-body'>
                   <div className='brand-wrapper'>
-                    <img src={Logo} alt='logo' className='logo' />
+                    <img
+                      src={Logo}
+                      alt='logo'
+                      className='logo'
+                      onClick={() => this.props.history.replace('/')}
+                    />
                   </div>
                   <p className='login-card-description'>
                     Sign into your account

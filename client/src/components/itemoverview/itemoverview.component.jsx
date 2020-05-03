@@ -126,7 +126,6 @@ class ItemOverViewComponent extends Component {
 
                 <a
                   href={
-                    process.env.PUBLIC_URL +
                     '/api/' +
                     this.state.post.types +
                     '/' +
