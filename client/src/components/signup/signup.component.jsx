@@ -69,7 +69,7 @@ class SignUp extends React.Component {
               </div>
               <div className='close'>
                 <i
-                  className='fa fa-times-circle fa-2x '
+                  className='fa fa-times-circle fa-1.8x '
                   onClick={() => this.props.history.replace('/')}
                 ></i>
               </div>
