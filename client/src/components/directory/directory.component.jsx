@@ -93,6 +93,7 @@ class DirectoryComponent extends Component {
       var $this = $(this)
       $this.button('loading')
     })
+    
     this.fetchData()
   }
 
