@@ -1,5 +1,7 @@
 .img-preview {
+  object-fit: scale-down;
+}
+.card-preview {
   max-height: 600px;
   max-width: 500px;
-  object-fit: scale-down;
 }

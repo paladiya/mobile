@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import './style.scss'
 import { Link } from 'react-router-dom'
 import PlayImg from '../../assets/img/play.png'
 import PauseImg from '../../assets/img/pause.png'
@@ -11,10 +11,20 @@ import MusicPause from '../../assets/img/music.gif'
 import MusicPlay from '../../assets/img/sunburst.gif'
 import { selectCurretnUser } from '../../redux/user/user-selector'
 import Axios from 'axios'
+import Trianglify from 'trianglify'
+import { CircularProgressbar } from 'react-circular-progressbar'
+import 'react-circular-progressbar/dist/styles.css'
+import Img from 'react-image'
+import MusicSpinner from '../Util/MusicSpinner'
+import TrianglifyGenerate from '../Util/Trianglify'
 
 class MusicItem extends Component {
   constructor (props) {
     super(props)
+    this.state = {
+      audioPercent: 0,
+      loading: false
+    }
   }
 
   componentWillUnmount () {
@@ -47,11 +57,15 @@ class MusicItem extends Component {
         audio.pause()
       }
     }
-    this.audio.play()
+    this.setState({ loading: true })
+    setTimeout(() => {
+      this.audio.play()
+    }, 2000)
   }
 
   onHandlePlay = id => {
     console.log('handle play')
+    this.setState({ loading: false })
     this.props.dispatch(play(id))
   }
 
@@ -61,6 +75,23 @@ class MusicItem extends Component {
 
   onHandlePause = id => {
     this.props.dispatch(pause(id))
+  }
+
+  onHandleTimeUpdate = event => {
+    var currentTime = this.audio.currentTime
+    var duration = this.audio.duration
+    var percent = (currentTime * 100) / duration
+    this.setState({ audioPercent: percent })
+  }
+
+  componentDidMount () {
+    if (!this.props.item.pattern) {
+      this.setState({
+        pattern: TrianglifyGenerate()
+          .canvas()
+          .toDataURL()
+      })
+    }
   }
 
   render () {
@@ -76,17 +107,30 @@ class MusicItem extends Component {
           onEnded={() => this.onHandleEnded(this.props.item._id)}
           onPlay={() => this.onHandlePlay(this.props.item._id)}
           onPause={() => this.onHandlePause(this.props.item._id)}
+          onTimeUpdate={this.onHandleTimeUpdate}
         />
 
-        <div className='card'>
-          <img
+        <div className='card d-flex justify-content-center align-items flex-column'>
+          <Img
+            id='trianglify'
             className='img-cover card-img'
             src={
-              this.props.isPlaying && this.props.playId == this.props.item._id
-                ? MusicPlay
-                : MusicPause
+              this.props.item.pattern
+                ? this.props.item.pattern
+                : this.state.pattern
             }
           />
+          {this.state.loading ? (
+            <div className='parent-media progress'>
+              <MusicSpinner className='progress' />
+            </div>
+          ) : (
+            <CircularProgressbar
+              className='progress'
+              value={this.state.audioPercent}
+            />
+          )}
+
           <Link
             to={{
               pathname: '/' + this.props.item.types + '/' + this.props.item._id,
@@ -112,7 +156,7 @@ class MusicItem extends Component {
             </div>
           </Link>
 
-          <div className='card-img-overlay parent-media '>
+          <div className='card-img-overlay parent-media'>
             {this.props.isPlaying &&
             this.props.playId == this.props.item._id ? (
               <img

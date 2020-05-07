@@ -1,0 +1,25 @@
+
+.loading {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	background-color: #74747479;
+	align-self: center;
+	align-content: center;
+	align-items: center;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+	overscroll-behavior: contain;
+    z-index: 10;
+	.waves {
+		text-align: center;
+		align-self: center;
+		position: absolute;
+		top: 33%;
+		left: 40%;
+	}
+}

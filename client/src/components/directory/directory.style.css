@@ -6,6 +6,7 @@
   margin-top: 20px !important;
 }
 .list-item {
+  position: relative;
   padding: 5px;
   margin-bottom: 10px !important;
   display: flex;

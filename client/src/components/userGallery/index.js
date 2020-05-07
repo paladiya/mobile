@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Axios from 'axios'
 import ImageItem from '../imageItem'
 import MusicItem from '../musicItem'
-
+import '../directory/style.scss'
 class UserGallery extends Component {
   constructor (props) {
     super(props)

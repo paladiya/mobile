@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './directory.style.scss'
+import './style.scss'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { selectCurretnUser } from '../../redux/user/user-selector'
@@ -11,11 +11,13 @@ import MusicItem from '../musicItem'
 import { selectSearchTerm } from '../../redux/search/search-selector'
 import Page404 from '../page404'
 import { setToken } from '../../redux/guest/guest-action'
-
+import TrianglifyGenerate from '../Util/Trianglify'
+import $ from 'jquery'
 class DirectoryComponent extends Component {
   constructor (props) {
     super(props)
     this.fetchData = this.fetchData.bind(this)
+    this.showMoreRef = React.createRef()
 
     this.state = {
       items: [],
@@ -50,8 +52,22 @@ class DirectoryComponent extends Component {
         console.log('result ', result)
 
         if (result.status == 200 && result.data.files) {
+          const data = result.data.files
+          const newData = data.map(map => {
+            if (map.types === 'music') {
+              return {
+                ...map,
+                pattern: TrianglifyGenerate()
+                  .canvas()
+                  .toDataURL()
+              }
+            } else {
+              return map
+            }
+          })
+          console.log('newData', newData)
           this.setState(prevState => ({
-            items: [...prevState.items, ...result.data.files]
+            items: [...prevState.items, ...newData]
           }))
         } else if (result.status == 401) {
           console.log('401', result)
@@ -73,6 +89,10 @@ class DirectoryComponent extends Component {
   }
 
   componentDidMount () {
+    $('.btn').on('click', function () {
+      var $this = $(this)
+      $this.button('loading')
+    })
     this.fetchData()
   }
 
@@ -158,20 +178,17 @@ class DirectoryComponent extends Component {
           })}
         </div>
         {this.state.items.length >= 24 && (
-          <div
-            className='button btn btn-primary w-50 '
+          <button
+            type='button'
+            ref={this.showMoreRef}
+            className='button btn btn-primary w-50 btn-loading'
             variant='contained'
             color='primary'
             onClick={this.loadMore}
+            data-loading-text="<i className='fa fa-circle-o-notch fa-spin'></i> Loading"
           >
-            <span
-              className='spinner-border spinner-border-sm mx-2'
-              role='status'
-              aria-hidden='true'
-              style={{ display: !this.state.loading && 'none' }}
-            ></span>
             Show More
-          </div>
+          </button>
         )}
       </div>
     )

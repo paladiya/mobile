@@ -14,7 +14,7 @@ options = {
   auth: {
     authSource: 'admin'
   },
-  user: 'gautam',
+  user: 'mobile',
   pass: 'Gautampatel@0261'
 }
 mongoose

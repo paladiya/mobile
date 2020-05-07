@@ -14,8 +14,11 @@ import MusicItem from '../musicItem'
 import SharePopup from '../sharePopUp'
 import { withRouter } from 'react-router'
 import Loading from '../loading'
-
+import Trianglify from 'trianglify'
+import MusicOverView from '../musicoverview'
 import ImageOverView from '../imageoverview'
+import TrianglifyGenerate from '../Util/Trianglify'
+
 class ItemOverViewComponent extends Component {
   constructor (props) {
     super(props)
@@ -42,7 +45,20 @@ class ItemOverViewComponent extends Component {
 
     if (result) {
       if (result.data.status == 200) {
-        this.setState({ post: result.data.post })
+        if (result.data.post.types === 'music') {
+          this.setState({
+            post: {
+              ...result.data.post,
+              pattern: TrianglifyGenerate()
+                .canvas()
+                .toDataURL()
+            }
+          })
+          return
+        }
+        this.setState({
+          post: result.data.post
+        })
       } else {
         this.setState({ pageFound: false })
       }
@@ -58,6 +74,13 @@ class ItemOverViewComponent extends Component {
       }
     }
     // $(this).trigger(event)
+    const shareData = {
+      title: 'Mobile60',
+      text:
+        'Download free Latest Ringtones and HD, mobile,  wallaper  Free on Mobile69.',
+      url: `${window.location.origin}/api/${this.state.post.types}/ ${this.state.post.fileName}`
+    }
+    navigator.share(shareData)
   }
 
   downloadImage = () => {}
@@ -149,7 +172,7 @@ class ItemOverViewComponent extends Component {
             {this.state.post.types == 'image' ? (
               <ImageOverView item={this.state.post} />
             ) : (
-              <MusicItem
+              <MusicOverView
                 item={this.state.post}
                 isActive={false}
                 col='col-md-4 col-12'

@@ -16,6 +16,7 @@ function isValidFileType (fName, fType) {
 
 router.post('/upload', async (req, res) => {
   console.log(req.body)
+  console.log(req.files)
   let path
   if (process.env.NODE_ENV === 'production') {
     let path = `${__dirname}/../../front-end/`
@@ -24,7 +25,7 @@ router.post('/upload', async (req, res) => {
   }
 
   if (req.files == null) {
-    return res.status(403).json({ msg: 'no files uploaded' })
+    return res.status(403).json({ message: 'no files uploaded' })
   }
   const file = req.files.file
   const fileOriginName = req.body.fileOriginName

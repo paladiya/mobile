@@ -7,7 +7,7 @@ import { GridLoader } from 'react-spinners'
 export default function ImageOverView (props) {
   return (
     <div>
-      <div className='card border-red'>
+      <div className='card card-preview'>
         <Img
           className='img-preview card-img'
           src={`/api/${props.item.types}/resize/${props.item.fileName}`}

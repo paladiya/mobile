@@ -24,7 +24,8 @@ class MultipleUpload extends Component {
       url: '',
       tags: [],
       loading: false,
-      upload: []
+      upload: [],
+      filetype:''
     }
     this.videoExt = []
     this.imageExt = ['jpg', 'gif', 'bmp', 'png', 'jpeg', 'ico', 'image']

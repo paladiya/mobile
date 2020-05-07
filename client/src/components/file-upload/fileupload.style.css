@@ -6,6 +6,16 @@
   align-self: center;
   width: min-content;
 }
+.wavesurfer-handle {
+  background: #a8dba8;
+}
+.wave {
+  margin: auto;
+  align-self: center;
+  max-width: 80vw;
+  width: 80%;
+  margin-bottom: 10px;
+}
 .tag {
   width: min-content;
   display: flex;
@@ -44,152 +54,152 @@
   padding: 8px;
 }
 .cat-parent .cat:nth-child(1) {
-  background-color: #f759cf !important;
+  background-color: #0dd1c2 !important;
 }
 .cat-parent .cat:nth-child(2) {
-  background-color: #394b21 !important;
+  background-color: #7ee92e !important;
 }
 .cat-parent .cat:nth-child(3) {
-  background-color: #6c099a !important;
+  background-color: #965f39 !important;
 }
 .cat-parent .cat:nth-child(4) {
-  background-color: #5f0a85 !important;
+  background-color: #be762a !important;
 }
 .cat-parent .cat:nth-child(5) {
-  background-color: #604d5a !important;
+  background-color: #fc47ee !important;
 }
 .cat-parent .cat:nth-child(6) {
-  background-color: #31118c !important;
+  background-color: #624ef2 !important;
 }
 .cat-parent .cat:nth-child(7) {
-  background-color: #3e75dd !important;
+  background-color: #7d5c71 !important;
 }
 .cat-parent .cat:nth-child(8) {
-  background-color: #607076 !important;
+  background-color: #f8520c !important;
 }
 .cat-parent .cat:nth-child(9) {
-  background-color: #4533d1 !important;
+  background-color: #c977c0 !important;
 }
 .cat-parent .cat:nth-child(10) {
-  background-color: #47b413 !important;
+  background-color: #ef3a3f !important;
 }
 .cat-parent .cat:nth-child(11) {
-  background-color: #2ea756 !important;
+  background-color: #60ff6b !important;
 }
 .cat-parent .cat:nth-child(12) {
-  background-color: #c27cc1 !important;
+  background-color: #fb7319 !important;
 }
 .cat-parent .cat:nth-child(13) {
-  background-color: #902c77 !important;
+  background-color: #84b5b6 !important;
 }
 .cat-parent .cat:nth-child(14) {
-  background-color: #13776d !important;
+  background-color: #81d498 !important;
 }
 .cat-parent .cat:nth-child(15) {
-  background-color: #af75c6 !important;
+  background-color: #942079 !important;
 }
 .cat-parent .cat:nth-child(16) {
-  background-color: #4bcc05 !important;
+  background-color: #b82f04 !important;
 }
 .cat-parent .cat:nth-child(17) {
-  background-color: #58fd61 !important;
+  background-color: #8f0c26 !important;
 }
 .cat-parent .cat:nth-child(18) {
-  background-color: #2db341 !important;
+  background-color: #02db69 !important;
 }
 .cat-parent .cat:nth-child(19) {
-  background-color: #c3a2c8 !important;
+  background-color: #7001cd !important;
 }
 .cat-parent .cat:nth-child(20) {
-  background-color: #e77349 !important;
+  background-color: #91b754 !important;
 }
 .cat-parent .cat:nth-child(21) {
-  background-color: #e2754d !important;
+  background-color: #1c2b88 !important;
 }
 .cat-parent .cat:nth-child(22) {
-  background-color: #5443b0 !important;
+  background-color: #b8ce45 !important;
 }
 .cat-parent .cat:nth-child(23) {
-  background-color: #29fa31 !important;
+  background-color: #58a4d5 !important;
 }
 .cat-parent .cat:nth-child(24) {
-  background-color: #3716f8 !important;
+  background-color: #3a5a10 !important;
 }
 .cat-parent .cat:nth-child(25) {
-  background-color: #7ea3f1 !important;
+  background-color: #d5309c !important;
 }
 .cat-parent .cat:nth-child(26) {
-  background-color: #6e3e89 !important;
+  background-color: #d7dfa3 !important;
 }
 .cat-parent .cat:nth-child(27) {
-  background-color: #752560 !important;
+  background-color: #5fcf72 !important;
 }
 .cat-parent .cat:nth-child(28) {
-  background-color: #e823af !important;
+  background-color: #f5f8ca !important;
 }
 .cat-parent .cat:nth-child(29) {
-  background-color: #3af5c7 !important;
+  background-color: #c8d784 !important;
 }
 .cat-parent .cat:nth-child(30) {
-  background-color: #566fbe !important;
+  background-color: #9921b0 !important;
 }
 .cat-parent .cat:nth-child(31) {
-  background-color: #c0b384 !important;
+  background-color: #27a289 !important;
 }
 .cat-parent .cat:nth-child(32) {
-  background-color: #2eecac !important;
+  background-color: #012eef !important;
 }
 .cat-parent .cat:nth-child(33) {
-  background-color: #3dd2b8 !important;
+  background-color: #c6e9fd !important;
 }
 .cat-parent .cat:nth-child(34) {
-  background-color: #0660de !important;
+  background-color: #ff23ad !important;
 }
 .cat-parent .cat:nth-child(35) {
-  background-color: #022b3c !important;
+  background-color: #908066 !important;
 }
 .cat-parent .cat:nth-child(36) {
-  background-color: #9949ec !important;
+  background-color: #538f8d !important;
 }
 .cat-parent .cat:nth-child(37) {
-  background-color: #6588d2 !important;
+  background-color: #326158 !important;
 }
 .cat-parent .cat:nth-child(38) {
-  background-color: #b2990d !important;
+  background-color: #96d5f7 !important;
 }
 .cat-parent .cat:nth-child(39) {
-  background-color: #1274dd !important;
+  background-color: #d0112d !important;
 }
 .cat-parent .cat:nth-child(40) {
-  background-color: #aedf63 !important;
+  background-color: #7f65be !important;
 }
 .cat-parent .cat:nth-child(41) {
-  background-color: #a5273f !important;
+  background-color: #6fdcb2 !important;
 }
 .cat-parent .cat:nth-child(42) {
-  background-color: #de2c42 !important;
+  background-color: #96e6f1 !important;
 }
 .cat-parent .cat:nth-child(43) {
-  background-color: #60cb3b !important;
+  background-color: #1d4e52 !important;
 }
 .cat-parent .cat:nth-child(44) {
-  background-color: #090d8d !important;
+  background-color: #7a03be !important;
 }
 .cat-parent .cat:nth-child(45) {
-  background-color: #c95cda !important;
+  background-color: #cb0329 !important;
 }
 .cat-parent .cat:nth-child(46) {
-  background-color: #9c4179 !important;
+  background-color: #f38c78 !important;
 }
 .cat-parent .cat:nth-child(47) {
-  background-color: #88cb41 !important;
+  background-color: #e1c7d5 !important;
 }
 .cat-parent .cat:nth-child(48) {
-  background-color: #9b5a64 !important;
+  background-color: #765503 !important;
 }
 .cat-parent .cat:nth-child(49) {
-  background-color: #75a26d !important;
+  background-color: #c73e08 !important;
 }
 .cat-parent .cat:nth-child(50) {
-  background-color: #1504d3 !important;
+  background-color: #69aa24 !important;
 }
