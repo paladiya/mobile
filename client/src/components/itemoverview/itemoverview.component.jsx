@@ -9,12 +9,9 @@ import Axios from 'axios'
 import { doSearch } from '../../redux/search/search-action'
 import { setCategory } from '../../redux/category/cat-action'
 import { connect } from 'react-redux'
-// import Promise from 'react-promise'
-import MusicItem from '../musicItem'
 import SharePopup from '../sharePopUp'
 import { withRouter } from 'react-router'
 import Loading from '../loading'
-import Trianglify from 'trianglify'
 import MusicOverView from '../musicoverview'
 import ImageOverView from '../imageoverview'
 import TrianglifyGenerate from '../Util/Trianglify'
@@ -73,14 +70,22 @@ class ItemOverViewComponent extends Component {
       if (result.data.status == 200) {
       }
     }
-    // $(this).trigger(event)
     const shareData = {
       title: 'Mobile60',
       text:
         'Download free Latest Ringtones and HD, mobile,  wallaper  Free on Mobile69.',
       url: `${window.location.origin}/api/${this.state.post.types}/ ${this.state.post.fileName}`
     }
-    navigator.share(shareData)
+    if (navigator.share) {
+      navigator
+        .share(shareData)
+        .then(() => {
+          console.log('Thanks for sharing!')
+        })
+        .catch(console.error)
+    } else {
+      // shareDialog.classList.add('is-open');
+    }
   }
 
   downloadImage = () => {}

@@ -34,7 +34,7 @@ class DirectoryComponent extends Component {
     console.log('pagenum', this.state.all)
     const token = this.props.token
     console.log('token ', token)
-
+    await this.setState({ loading: true })
     axios
       .post(
         `/api/post/${this.props.cat.toLowerCase()}`,
@@ -67,13 +67,14 @@ class DirectoryComponent extends Component {
           })
           console.log('newData', newData)
           this.setState(prevState => ({
-            items: [...prevState.items, ...newData]
+            items: [...prevState.items, ...newData],
+            loading: false
           }))
         } else if (result.status == 401) {
           console.log('401', result)
         }
         {
-          this.setState({ error: result.data.message })
+          this.setState({ error: result.data.message, loading: false })
         }
       })
       .catch(error => {
@@ -84,16 +85,11 @@ class DirectoryComponent extends Component {
             this.props.setToken(error.response.data.token)
           }
         }
-        this.setState({ error: error })
+        this.setState({ error: error, loading: false })
       })
   }
 
   componentDidMount () {
-    $('.btn').on('click', function () {
-      var $this = $(this)
-      $this.button('loading')
-    })
-    
     this.fetchData()
   }
 
@@ -106,8 +102,9 @@ class DirectoryComponent extends Component {
     }
   }
 
-  loadMore = () => {
+  loadMore = async () => {
     console.log('call loadmore')
+    await this.setState({ loading: true })
     switch (this.props.cat.toLowerCase()) {
       case 'all':
         this.setState(
@@ -178,17 +175,30 @@ class DirectoryComponent extends Component {
             }
           })}
         </div>
+
         {this.state.items.length >= 24 && (
           <button
+            id='showmore'
             type='button'
             ref={this.showMoreRef}
-            className='button btn btn-primary w-50 btn-loading'
+            className='btn btn-primary w-50 btn-loading'
             variant='contained'
             color='primary'
             onClick={this.loadMore}
             data-loading-text="<i className='fa fa-circle-o-notch fa-spin'></i> Loading"
           >
-            Show More
+            {!this.state.loading ? (
+              ' Show More'
+            ) : (
+              <div>
+                <span
+                  class='spinner-border spinner-border-sm'
+                  role='status'
+                  aria-hidden='true'
+                ></span>{' '}
+                Loading...
+              </div>
+            )}
           </button>
         )}
       </div>

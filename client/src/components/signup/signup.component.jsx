@@ -125,13 +125,26 @@ class SignUp extends React.Component {
                         required
                       />
                     </div>
-                    <input
+                    <button
                       name='login'
                       id='login'
                       className='btn btn-block login-btn'
                       type='submit'
                       value='Sign up'
-                    />
+                    >
+                      {!this.state.loading ? (
+                        'Signup'
+                      ) : (
+                        <div>
+                          <span
+                            class='spinner-border spinner-border-sm'
+                            role='status'
+                            aria-hidden='true'
+                          ></span>{' '}
+                          Loading...
+                        </div>
+                      )}
+                    </button>
                   </form>
                   {this.state.error && (
                     <Message success={false} message={this.state.error} />

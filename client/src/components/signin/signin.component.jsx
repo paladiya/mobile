@@ -101,7 +101,7 @@ class SignIn extends React.Component {
   render () {
     return (
       <div className='d-flex align-items-center min-vh-100 py-3 py-md-0'>
-        {this.state.loading && <ParentLoading />}
+        {/* {this.state.loading && <ParentLoading />} */}
 
         <div className='container'>
           <div className='card login-card'>
@@ -159,13 +159,27 @@ class SignIn extends React.Component {
                         required
                       />
                     </div>
-                    <input
+                    <button
                       name='login'
                       id='login'
                       className='btn btn-block login-btn mb-4'
                       type='submit'
                       value='Login'
-                    ></input>
+                    >
+                      {' '}
+                      {!this.state.loading ? (
+                        'Login'
+                      ) : (
+                        <div>
+                          <span
+                            class='spinner-border spinner-border-sm'
+                            role='status'
+                            aria-hidden='true'
+                          ></span>{' '}
+                          Loading...
+                        </div>
+                      )}
+                    </button>
                   </form>
 
                   {this.state.error && (
