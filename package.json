@@ -30,7 +30,8 @@
     "nodemon": "^2.0.2",
     "path": "^0.12.7",
     "react-trianglify": "^2.0.5",
-    "sharp": "^0.25.2"
+    "sharp": "^0.25.2",
+    "wavesurfer.js": "^3.3.3"
   },
   "devDependencies": {
     "concurrently": "^5.1.0"

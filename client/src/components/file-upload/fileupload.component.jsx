@@ -112,6 +112,9 @@ class FileuploadComponent extends Component {
   onChageInput = async e => {
     console.log(e.target.files[0])
     const file = e.target.files[0]
+    if (!file) {
+      return
+    }
     const fileSize = file.size / (1024 * 1024)
     let fileType = file.name.split('.').pop()
     const url = readBlobURL(file)
@@ -122,7 +125,7 @@ class FileuploadComponent extends Component {
         success: false,
         message: `Select max file size ${process.env.REACT_APP_MAX_FILE_SIZE} MB`
       })
-      this.messageRef.focus()
+     
       return
     }
 
@@ -310,6 +313,8 @@ class FileuploadComponent extends Component {
   componentDidMount () {}
 
   handlecut = async isDownload => {
+    this.setState({ loading: true })
+
     const audioSliced = sliceAudioBuffer(
       this.wavesurfer.backend.buffer,
       ~~(
@@ -336,6 +341,7 @@ class FileuploadComponent extends Component {
 
         this.setState({ file: myFile }, newState => {
           if (isDownload) {
+            this.setState({ loading: false })
             download(url, rename(this.state.file.name, 'mp3'))
           }
         })
@@ -343,7 +349,7 @@ class FileuploadComponent extends Component {
       .catch(e => console.error(e))
       .then(() => {
         console.log('processsing finish ')
-        this.setState({ loading: true })
+        this.setState({ loading: false })
       })
   }
 
@@ -462,7 +468,7 @@ class FileuploadComponent extends Component {
           <Progress percentage={this.state.progress} />
 
           <Message
-            ref={this.messageRef}
+            ref={this.messageref}
             message={this.state.message}
             success={this.state.success}
           />

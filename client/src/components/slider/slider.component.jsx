@@ -2,15 +2,11 @@ import React, { Component } from 'react'
 import './slider.style.scss'
 import { connect } from 'react-redux'
 import { toggleSlider } from '../../redux/slider/slide-action'
-import {  withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { doLogout } from '../../redux/user/user-action'
 import { setCategory } from '../../redux/category/cat-action'
 
 class SliderComponent extends Component {
-  constructor (props) {
-    super(props)
-  }
-
   handleSignin = () => {
     this.props.currentUser && this.props.doLogout()
     this.props.history.push('/signin')

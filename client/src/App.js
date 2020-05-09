@@ -14,28 +14,16 @@ import { selectCat } from './redux/category/cat-selector'
 import Test from './components/player'
 import UploadPage from './pages/uploadpage/upload.page'
 
-const FindComponent = lazy(() => import('./components/find/index'))
-const MultipleUploadPage = lazy(() =>
-  import('./pages/multipleUploadPage/multipleUploadPage')
-)
-const signupComponent = lazy(() =>
-  import('./components/signup/signup.component')
-)
-const signinComponent = lazy(() =>
-  import('./components/signin/signin.component')
-)
-
-const Page404 = lazy(() => import('./components/page404'))
-
-const ItemOverViewComponent = lazy(() =>
-  import('./components/itemoverview/itemoverview.component')
-)
-
-// const UploadPage = lazy(() => import('./pages/uploadpage/upload.page'))
-
-const HomepageComponent = lazy(() =>
-  import('./pages/homepage/homepage.component')
-)
+import FindComponent from './components/find/index'
+import MultipleUploadPage from './pages/multipleUploadPage/multipleUploadPage'
+import signupComponent from './components/signup/signup.component'
+import signinComponent from './components/signin/signin.component'
+import Page404 from './components/page404'
+import ItemOverViewComponent from './components/itemoverview/itemoverview.component'
+import HomepageComponent from './pages/homepage/homepage.component'
+import RingtonesWallpaper from './components/directory/RingtonesWallpaper'
+import Ringtones from './components/directory/Ringtones'
+import Wallpaper from './components/directory/Wallpaper'
 
 class App extends React.Component {
   constructor (props) {
@@ -53,23 +41,42 @@ class App extends React.Component {
   }
 
   render () {
-    console.log(process.env.PUBLIC_URL)
     return (
       <div className='App container-md'>
-        <Suspense fallback={<Loading />}>
-          <Switch>
-            <Route exact path='/' component={HomepageComponent} />
-            <Route exact path='/cat/:catId' component={HomepageComponent} />
-            <Route path='/fileupload' component={UploadPage} />
-            <Route path='/find/:searchTerm' component={FindComponent} />
-            <Route path='/signin' component={signinComponent} />
-            <Route path='/signup' component={signupComponent} />
-            <Route path='/:cat/:itemId' component={ItemOverViewComponent} />
-            <Route path='/test' component={Test} />
-            <Route exact strict path='/rahul' component={MultipleUploadPage} />
-            <Route component={Page404} />
-          </Switch>
-        </Suspense>
+        <Switch>
+          <Route path='/fileupload' component={UploadPage} />
+          <Route path='/find/:searchTerm' component={FindComponent} />
+          <Route path='/signin' component={signinComponent} />
+          <Route path='/signup' component={signupComponent} />
+          <Route path='/:cat/:itemId' component={ItemOverViewComponent} />
+          <Route path='/test' component={Test} />
+          <Route exact strict path='/rahul' component={MultipleUploadPage} />
+          <HomepageComponent>
+            <Route
+              component={({ match }) => (
+                <Switch>
+                  <Route
+                    exact
+                    path='/ringtones-and-wallpapers'
+                    component={RingtonesWallpaper}
+                  />
+                  <Route exact path='/ringtones' component={Ringtones} />
+                  <Route exact path='/wallpapers' component={Wallpaper} />
+                  <Route strict exact path='/' component={RingtonesWallpaper} />
+                  <Route component={Page404} />
+                </Switch>
+              )}
+            />
+          </HomepageComponent>
+
+          {/* <Route exact path='/' component={HomepageComponent} />
+          <Route
+            pat='/ringtones-and-wallpapers'
+            component={RingtonesWallpaper}
+          />
+          <Route pat='/ringtones' component={} />
+          <Route pat='/wallpapers' component={} /> */}
+        </Switch>
       </div>
     )
   }

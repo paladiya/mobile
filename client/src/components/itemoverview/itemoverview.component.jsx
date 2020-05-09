@@ -15,6 +15,7 @@ import Loading from '../loading'
 import MusicOverView from '../musicoverview'
 import ImageOverView from '../imageoverview'
 import TrianglifyGenerate from '../Util/Trianglify'
+import { Helmet } from 'react-helmet'
 
 class ItemOverViewComponent extends Component {
   constructor (props) {
@@ -106,9 +107,31 @@ class ItemOverViewComponent extends Component {
     return this.state.pageFound ? (
       this.state.post ? (
         <div className='parent '>
+          {this.state.post.types === 'image' ? (
+            <Helmet>
+              <meta
+                property='og:image'
+                content={`${window.location.href}/api/${this.state.post.types}/resize/${this.state.post.fileName}`}
+              />
+              <meta
+                property='og:image:secure_url'
+                content={`${window.location.href}/api/${this.state.post.types}/resize/${this.state.post.fileName}`}
+              />
+              <meta property='og:image:type' content='image/jpeg' />
+              <meta property='og:image:width' content='400' />
+              <meta property='og:image:height' content='300' />
+              <meta property='og:image:alt' content='Mobile69.in' />
+            </Helmet>
+          ) : (
+            <Helmet>
+              <meta
+                property='og:audio'
+                content={`${window.location.href}/api/${this.state.post.types}/resize/${this.state.post.fileName}`}
+              />
+            </Helmet>
+          )}
           <div>
             <HeaderComponent />
-
             <div className='header-parent pt-2 d-flex flex-column align-items-md-start flex-md-row '>
               <div className='left col-12 col-md-10'>
                 <div className='d-flex'>

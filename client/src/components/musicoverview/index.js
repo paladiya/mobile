@@ -7,11 +7,8 @@ import { createStructuredSelector } from 'reselect'
 import { connect } from 'react-redux'
 import { selectIsPlaying, selectItemId } from '../../redux/play/play-selector'
 import { play, pause } from '../../redux/play/play-action'
-import MusicPause from '../../assets/img/music.gif'
-import MusicPlay from '../../assets/img/sunburst.gif'
 import { selectCurretnUser } from '../../redux/user/user-selector'
 import Axios from 'axios'
-import Trianglify from 'trianglify'
 import { CircularProgressbar } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 import Img from 'react-image'
@@ -145,14 +142,16 @@ class MusicItem extends Component {
 
           <div className='card-img-overlay parent-media'>
             {this.props.isPlaying &&
-            this.props.playId == this.props.item._id ? (
+            this.props.playId === this.props.item._id ? (
               <img
+                alt='pause button'
                 src={PauseImg}
                 onClick={() => this.onPause(this.props.item._id)}
                 className='img-media'
               />
             ) : (
               <img
+                alt='play button'
                 src={PlayImg}
                 onClick={() => this.onPlay(this.props.item._id)}
                 className='img-media'

@@ -1,0 +1,72 @@
+.parent-dir {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.directory-list {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  margin-top: 20px !important;
+}
+.list-item {
+  position: relative;
+  padding: 5px;
+  margin-bottom: 10px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 0px rgba(0, 0, 0, 0.13);
+  border-radius: 5px;
+}
+.img-cover {
+  padding: 0px;
+  margin: 0px;
+  height: 350px;
+  object-fit: "cover";
+}
+@media (max-width: 575.98px) {
+  .img-cover {
+    height: 250px;
+  }
+}
+.btn-close {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  color: white;
+  margin-right: 6px;
+}
+.img-cover-music {
+  width: 200px;
+  height: 20%;
+  max-height: 250px;
+}
+.item-parent {
+  position: absolute;
+}
+.img-media {
+  width: 50px;
+  height: 50px;
+}
+.parent-media {
+  margin: auto;
+  width: min-content;
+  height: min-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-title {
+  max-width: 12ch;
+  position: absolute;
+  bottom: 0;
+  color: white;
+  text-transform: camelCase;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  -webkit-line-clamp: 1;
+}

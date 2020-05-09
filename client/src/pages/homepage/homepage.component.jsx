@@ -9,17 +9,13 @@ class HomepageComponent extends Component {
     super(props)
   }
 
-  componentDidMount () {
-    // this.props.history.push(`/${this.props.cat}`)
-  }
-
   render () {
-    // console.log(this.props.isToggle)
-    console.log(this.props)
+    console.log('home ', this.props)
     return (
       <div className='homepage '>
         <HeaderComponent />
         <NavigationComponent />
+        {this.props.children}
       </div>
     )
   }

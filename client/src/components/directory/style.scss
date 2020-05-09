@@ -1,3 +1,10 @@
+.parent-dir {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
 .directory-list {
 	display: flex;
 	flex-direction: row;
