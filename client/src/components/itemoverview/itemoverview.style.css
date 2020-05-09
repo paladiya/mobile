@@ -1,7 +1,7 @@
 .parent {
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
+  overflow-x: inherit;
 }
 .parent .header-parent {
   align-items: center;

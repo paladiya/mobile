@@ -4,6 +4,8 @@ import NavigationComponent from '../../components/navigation/navigation.componen
 import HeaderComponent from '../../components/header/header.component'
 import { connect } from 'react-redux'
 import { setCategory } from '../../redux/category/cat-action'
+import { Helmet } from 'react-helmet'
+
 class HomepageComponent extends Component {
   constructor (props) {
     super(props)
@@ -14,10 +16,15 @@ class HomepageComponent extends Component {
   }
 
   render () {
-    // console.log(this.props.isToggle)
-    console.log(this.props)
     return (
       <div className='homepage '>
+        <Helmet>
+          <title>Latest Ringtones and HD wallaper</title>
+          <meta
+            name='description'
+            content='Download Latest Ringtones and HD, mobile,  wallaper  Free on Mobile69.'
+          />
+        </Helmet>
         <HeaderComponent />
         <NavigationComponent />
       </div>

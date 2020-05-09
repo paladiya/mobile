@@ -32,12 +32,9 @@ class ImageItem extends Component {
     console.log(result)
   }
 
-  componentDidMount () {
-    
-  }
+  componentDidMount () {}
 
   render () {
-    
     return (
       <div className={`${this.props.col} list-item align-self-center`}>
         <Link
@@ -49,6 +46,7 @@ class ImageItem extends Component {
         >
           <div className='card border-red'>
             <Img
+              crossorigin='anonymous'
               className='img-cover card-img'
               src={`/api/${this.props.item.types}/resize/${this.props.item.fileName}`}
               loader={<GridLoader size={20} margin={10} />}

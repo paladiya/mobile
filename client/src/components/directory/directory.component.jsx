@@ -12,7 +12,6 @@ import { selectSearchTerm } from '../../redux/search/search-selector'
 import Page404 from '../page404'
 import { setToken } from '../../redux/guest/guest-action'
 import TrianglifyGenerate from '../Util/Trianglify'
-import $ from 'jquery'
 class DirectoryComponent extends Component {
   constructor (props) {
     super(props)
