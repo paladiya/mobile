@@ -5,11 +5,12 @@ import { toggleSlider } from '../../redux/slider/slide-action'
 import SliderComponent from '../../components/slider/slider.component'
 import { Link, withRouter, Redirect } from 'react-router-dom'
 import { createStructuredSelector } from 'reselect'
-import { selectSearchTerm } from '../../redux/search/search-selector'
 import { selectIsToggle } from '../../redux/slider/slide-selector'
 import { doSearch } from '../../redux/search/search-action'
 import { setCategory } from '../../redux/category/cat-action'
 import { connect } from 'react-redux'
+import BAR from '../../assets/svg/bars.svg'
+import SearchSvg from '../../assets/svg/search.svg'
 
 class Header extends Component {
   constructor (props) {
@@ -57,7 +58,7 @@ class Header extends Component {
           <div className='input-group col-md-7 menu'>
             <div className='input-group-prepend'>
               <span className='input-group-text form-control' id='basic-addon1'>
-                <i className='fa fa-search' />
+                <img src={SearchSvg} width={25} height={25} />
               </span>
             </div>
             <input
@@ -73,7 +74,7 @@ class Header extends Component {
             className='col-md-2 menu '
             onClick={() => this.props.toggleSlider()}
           >
-            <i className='fa fa-bars fa-2x' />
+            <img src={BAR} className='.img-fluid' />
           </div>
         </div>
         <hr className='divider' />

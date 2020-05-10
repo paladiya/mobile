@@ -75,14 +75,15 @@ class Ringtones extends Component {
 
   render () {
     console.log('com ringtones')
-    return this.state.loading ? (
-      <div className='parent-dir'>
-        <RingLoader size={200} color='#4A90E2' />
-      </div>
-    ) : this.error && this.state.items.length > 1 ? (
+    return this.error && this.state.items.length > 1 ? (
       <Page404 />
     ) : (
       <div className='parent-dir'>
+        {this.state.loading && (
+          <div className='parent-dir'>
+            <RingLoader size={200} color='#4A90E2' />
+          </div>
+        )}
         <div className='directory-list'>
           {this.state.items.map((item, index) => {
             return (
@@ -106,7 +107,6 @@ class Ringtones extends Component {
             variant='contained'
             color='primary'
             onClick={this.loadMore}
-            data-loading-text="<i className='fa fa-circle-o-notch fa-spin'></i> Loading"
           >
             {!this.state.loading ? (
               ' Show More'

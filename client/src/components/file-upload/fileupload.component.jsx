@@ -16,6 +16,7 @@ import {
   rename
 } from '../MusicTrimmer.js/utils'
 import ParentLoading from '../parentLoading'
+import CloseSvg from '../../assets/svg/close.svg'
 
 class FileuploadComponent extends Component {
   constructor (props) {
@@ -125,7 +126,7 @@ class FileuploadComponent extends Component {
         success: false,
         message: `Select max file size ${process.env.REACT_APP_MAX_FILE_SIZE} MB`
       })
-     
+
       return
     }
 
@@ -493,7 +494,7 @@ const Tag = props => {
       onClick={() => props.removeTag(props.children)}
     >
       <h6 className='m-auto'>{props.children}</h6>
-      <i className='fa fa-times ml-2'></i>
+      <img src={CloseSvg} className='ml-2' width={20} height={20} />
     </div>
   )
 }

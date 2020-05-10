@@ -50,4 +50,18 @@
 		display: flex;
 		flex-flow: row wrap;
 	}
+
+	.media {
+		display: flex;
+		justify-content: center;
+		margin-top: 20px;
+		
+	}
+	// @media (max-width: 575.98px) {
+	// 	.media {
+	// 		position: absolute;
+	// 		z-index:-1;
+	// 		margin-top: 20px;
+	// 	}
+	// }
 }

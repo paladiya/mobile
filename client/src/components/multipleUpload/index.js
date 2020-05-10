@@ -7,6 +7,7 @@ import './style.scss'
 import Header from '../header/header.component'
 import { withRouter } from 'react-router'
 import { all } from '../../data'
+import CloseSvg from '../../assets/svg/close.svg'
 
 class MultipleUpload extends Component {
   constructor (props) {
@@ -25,7 +26,7 @@ class MultipleUpload extends Component {
       tags: [],
       loading: false,
       upload: [],
-      filetype:''
+      filetype: ''
     }
     this.videoExt = []
     this.imageExt = ['jpg', 'gif', 'bmp', 'png', 'jpeg', 'ico', 'image']
@@ -300,7 +301,7 @@ const Tag = props => {
       onClick={() => props.removeTag(props.children)}
     >
       <h6 className='m-auto'>{props.children}</h6>
-      <i className='fa fa-times ml-2'></i>
+      <img className='ml-2' src={CloseSvg} width={20} height={20} />
     </div>
   )
 }

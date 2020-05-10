@@ -6,6 +6,8 @@ import { selectCurretnUser } from '../../redux/user/user-selector'
 import Axios from 'axios'
 import Img from 'react-image'
 import { GridLoader } from 'react-spinners'
+import CloseSvg from '../../assets/svg/close.svg'
+
 class ImageItem extends Component {
   constructor (props) {
     super(props)
@@ -59,13 +61,13 @@ class ImageItem extends Component {
                 <h5 className='card-title'>{this.props.item.fileOriginName}</h5>
               )}
               {this.props.delete && (
-                <i
+                <img
+                  src={CloseSvg} width={20} height={20}
                   onClick={async () => {
                     let deleteId = await this.deleteImage(this.props.item._id)
                     this.props.updateGallery(deleteId)
                   }}
-                  className='fa fa-times fa-2x btn-close'
-                ></i>
+                />
               )}
             </div>
           </div>

@@ -5,10 +5,11 @@ import { setCurrentUser } from '../../redux/user/user-action'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import Message from '../message'
-
 import Signup from '../../assets/img/signup.webp'
 import Logo from '../../assets/img/logo.png'
 import ParentLoading from '../parentLoading'
+import CloseSvg from '../../assets/svg/close.svg'
+
 class SignUp extends React.Component {
   constructor (prop) {
     super(prop)
@@ -68,10 +69,12 @@ class SignUp extends React.Component {
                 <img src={Signup} alt='Signup image' className='login-img' />
               </div>
               <div className='close'>
-                <i
-                  className='fa fa-times-circle fa-1.8x '
+                <img
+                  src={CloseSvg}
+                  width={40}
+                  height={40}
                   onClick={() => this.props.history.replace('/')}
-                ></i>
+                />
               </div>
               <div className='col-sm-6 login-section-wrapper'>
                 <div className='brand-wrapper'>

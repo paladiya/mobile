@@ -13,6 +13,7 @@ import { CircularProgressbar } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 import Img from 'react-image'
 import MusicSpinner from '../Util/MusicSpinner'
+import CloseSvg from '../../assets/svg/close.svg'
 
 class MusicItem extends Component {
   constructor (props) {
@@ -129,13 +130,16 @@ class MusicItem extends Component {
             )}
             <div className='card-img-overlay'>
               {this.props.delete && (
-                <i
+                <img
+                  src={CloseSvg}
+                  width={30}
+                  height={30}
                   onClick={async () => {
                     let deleteId = await this.deleteImage(this.props.item._id)
                     this.props.updateGallery(deleteId)
                   }}
-                  className='fa fa-times fa-2x btn-close'
-                ></i>
+                  className='btn-close'
+                />
               )}
             </div>
           </Link>

@@ -185,7 +185,6 @@ class DirectoryComponent extends Component {
             variant='contained'
             color='primary'
             onClick={this.loadMore}
-            data-loading-text="<i className='fa fa-circle-o-notch fa-spin'></i> Loading"
           >
             {!this.state.loading ? (
               ' Show More'

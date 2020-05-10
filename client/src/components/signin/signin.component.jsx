@@ -7,7 +7,7 @@ import { setCurrentUser } from '../../redux/user/user-action'
 import Message from '../message'
 import Login from '../../assets/img/login.webp'
 import Logo from '../../assets/img/logo.png'
-import ParentLoading from '../parentLoading'
+import CloseSvg from '../../assets/svg/close.svg'
 
 class SignIn extends React.Component {
   constructor (prop) {
@@ -110,10 +110,12 @@ class SignIn extends React.Component {
                 <img src={Login} alt='login' className='login-card-img' />
               </div>
               <div className='close'>
-                <i
-                  className='fa fa-times-circle fa-1.8x '
+                <img
+                  src={CloseSvg}
+                  width={25}
+                  height={25}
                   onClick={() => this.props.history.replace('/')}
-                ></i>
+                />
               </div>
               <div className='col-md-7'>
                 <div className='card-body'>

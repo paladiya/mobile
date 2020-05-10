@@ -47,3 +47,8 @@
   display: flex;
   flex-flow: row wrap;
 }
+.parent .media {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}

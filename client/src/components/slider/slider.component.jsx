@@ -2,10 +2,9 @@ import React, { Component } from 'react'
 import './slider.style.scss'
 import { connect } from 'react-redux'
 import { toggleSlider } from '../../redux/slider/slide-action'
-import { withRouter } from 'react-router-dom'
 import { doLogout } from '../../redux/user/user-action'
-import { setCategory } from '../../redux/category/cat-action'
-
+import { withRouter, NavLink } from 'react-router-dom'
+import CloseSvg from '../../assets/svg/close.svg'
 class SliderComponent extends Component {
   handleSignin = () => {
     this.props.currentUser && this.props.doLogout()
@@ -32,31 +31,37 @@ class SliderComponent extends Component {
     return (
       <div className='slider'>
         <div className='content text-left col-md-3 col-sm-12 '>
-          <i
-            className='fa fa-close fa-2x text-white py-3 text-left'
+          <img
+            src={CloseSvg}
+            width={25}
+            height={25}
+            className='text-white py-1 align-self-start '
             onClick={() => this.props.toggleSlider()}
           />
 
           <h5 className='text-muted  '>Content</h5>
           <div className='d-flex flex-column category'>
-            <div
+            <NavLink
+              to='/ringtones-and-wallpapers'
+              activeClassName='con-item text-left text-primary'
               className='con-item text-left text-white'
-              onClick={() => this.handleClickCategory('all')}
             >
-              Home
-            </div>
-            <div
+              All
+            </NavLink>
+            <NavLink
+              to='/wallpapers'
+              activeClassName='con-item text-left text-primary'
               className='con-item text-left text-white'
-              onClick={() => this.handleClickCategory('wallpaper')}
             >
-              Wallpapers
-            </div>
-            <div
+              Wallpaper
+            </NavLink>
+            <NavLink
+              to='/ringtones'
+              activeClassName='con-item text-left text-primary'
               className='con-item text-left text-white'
-              onClick={() => this.handleClickCategory('ringtones')}
             >
-              Ringtones
-            </div>
+              Ringtone
+            </NavLink>
           </div>
           <h5 className='text-muted py-2'>Share Your Content</h5>
           <div className='d-flex flex-column justify-content-left'>
@@ -87,8 +92,7 @@ const mapStateToProsps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   doLogout: () => dispatch(doLogout()),
-  toggleSlider: () => dispatch(toggleSlider()),
-  setCategory: cat => dispatch(setCategory(cat))
+  toggleSlider: () => dispatch(toggleSlider())
 })
 
 export default withRouter(

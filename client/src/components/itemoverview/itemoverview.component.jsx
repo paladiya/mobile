@@ -16,7 +16,9 @@ import MusicOverView from '../musicoverview'
 import ImageOverView from '../imageoverview'
 import TrianglifyGenerate from '../Util/Trianglify'
 import { Helmet } from 'react-helmet'
-
+import scrollToComponent from 'react-scroll-to-component'
+import SvgDownload from '../../assets/svg/download.svg'
+import SvgShare from '../../assets/svg/share.svg'
 class ItemOverViewComponent extends Component {
   constructor (props) {
     super(props)
@@ -24,14 +26,14 @@ class ItemOverViewComponent extends Component {
       fileName: '',
       pageFound: true,
       post: '',
-      sharePopup: false
+      sharePopup: false,
+      isZoom:false
     }
     this.myRef = React.createRef()
   }
 
   componentDidMount () {
     console.log(this.props.location)
-    window.scrollTo(0, 1000)
     this.fetchPost()
   }
 
@@ -52,6 +54,7 @@ class ItemOverViewComponent extends Component {
                 .toDataURL()
             }
           })
+
           return
         }
         this.setState({
@@ -103,6 +106,26 @@ class ItemOverViewComponent extends Component {
     this.setState({ sharePopup: false })
   }
 
+  scroll = () => {
+    // setTimeout(() => {
+    //   // scrollToComponent(this.Red, {
+    //   //   offset: 0,
+    //   //   align: 'middle',
+    //   //   duration: 500,
+    //   //   ease: 'inCirc'
+    //   // })
+    //   // this.myRef.current.scrollIntoView(false)
+    //   window.scrollTo({
+    //     left: 0,
+    //     top: document.body.scrollHeight,
+    //     behavior: 'smooth'
+    //   })
+    // }, 500)
+  }
+  toggleZoom = () => {
+    this.setState({isZoom:!this.state.isZoom})
+  }
+
   render () {
     return this.state.pageFound ? (
       this.state.post ? (
@@ -116,6 +139,14 @@ class ItemOverViewComponent extends Component {
               <meta
                 property='og:image:secure_url'
                 content={`${window.location.href}/api/${this.state.post.types}/resize/${this.state.post.fileName}`}
+              />
+              <meta
+                property='og:title'
+                content='Free Latest Ringtones and Wallaper'
+              />
+              <meta
+                property='og:description'
+                content='Download free Latest Ringtones and HD, mobile,  wallaper  Free on Mobile69. billion s of popular wallpaper and ringtones on mobile69 personalize your phone to suit you Browse our Content for free :)'
               />
               <meta property='og:image:type' content='image/jpeg' />
               <meta property='og:image:width' content='400' />
@@ -132,7 +163,7 @@ class ItemOverViewComponent extends Component {
           )}
           <div>
             <HeaderComponent />
-            <div className='header-parent pt-2 d-flex flex-column align-items-md-start flex-md-row '>
+            {!this.state.isZoom &&           <div className='header-parent pt-2 d-flex flex-column align-items-md-start flex-md-row '>
               <div className='left col-12 col-md-10'>
                 <div className='d-flex'>
                   <img src={UserImage} className='img-profile' />
@@ -141,7 +172,13 @@ class ItemOverViewComponent extends Component {
                       <h5 className='file-text'>
                         {this.state.post.fileOriginName}
                       </h5>
-                      <i className='fa fa-download fa-2x ml-4 mr-2 text-primary' />
+                      <h5 className='file-text text-primary '>
+                        <img
+                          src={SvgDownload}
+                          className='ml-4 mr-2 align-self-center text-primary'
+                        />
+                      </h5>
+
                       <h5 className='file-text text-primary '>
                         {this.state.post.downloads}
                       </h5>
@@ -167,13 +204,12 @@ class ItemOverViewComponent extends Component {
               </div>
 
               <div className='col-12 mt-4 col-md-2 d-flex justify-content-md-end  justify-content-center'>
-                <button
+                <img
+                  src={SvgShare}
                   type='button'
-                  className='btn btn-primary btn-md mr-2'
+                  className='btn btn-primary btn-md mr-2 text-white'
                   onClick={this.toggleShare}
-                >
-                  <i className='fa fa-share fa-1.5x ' />
-                </button>
+                />
 
                 <a
                   href={
@@ -182,6 +218,7 @@ class ItemOverViewComponent extends Component {
                     '/' +
                     this.state.post.fileName
                   }
+                  // onLoad={this.scroll()}
                   download={`${this.state.post.fileOriginName}`}
                   style={{ textDecoration: 'none' }}
                   className=' btn btn-primary btn-md'
@@ -194,11 +231,11 @@ class ItemOverViewComponent extends Component {
                   Download
                 </a>
               </div>
-            </div>
+            </div> }
           </div>
-          <div className='d-flex justify-content-center mt-5'>
+          <div className='media'>
             {this.state.post.types == 'image' ? (
-              <ImageOverView item={this.state.post} />
+              <ImageOverView item={this.state.post} isZoom={this.state.isZoom} toggleZoom={this.toggleZoom} />
             ) : (
               <MusicOverView
                 item={this.state.post}
