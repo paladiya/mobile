@@ -7,6 +7,7 @@ const path = require('path')
 const morgan = require('morgan')
 const dotenv = require('dotenv').config()
 var compression = require('compression')
+const fs = require('fs')
 
 const port = 4000
 options = {
@@ -46,7 +47,13 @@ app.use((req, res, next) => {
   next()
 })
 
-if (process.env.NODE_ENV === 'production') {
+app.use(fileUpload())
+app.use('/user', authRoutes)
+app.use('/post', postRoutes)
+app.use('/file', fileRoutes)
+app.use('/image', imageRoutes)
+
+if (process.env.NODE_ENV !== 'production') {
   console.log(process.env.NODE_ENV)
 
   app.use(express.static(path.join(__dirname, 'client/build')))
@@ -63,7 +70,7 @@ if (process.env.NODE_ENV === 'production') {
       data = data.replace(/\$OG_TITLE/g, 'Home Page')
       data = data.replace(/\$OG_DESCRIPTION/g, 'Home page description')
       result = data.replace(/\$OG_IMAGE/g, 'https://i.imgur.com/V7irMl8.png')
-      response.send(result)
+      res.send(result)
     })
   })
 
@@ -71,12 +78,6 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
   })
 }
-
-app.use(fileUpload())
-app.use('/user', authRoutes)
-app.use('/post', postRoutes)
-app.use('/file', fileRoutes)
-app.use('/image', imageRoutes)
 
 app.use((req, res, next) => {
   const error = new Error('Not found')

@@ -7,7 +7,6 @@ import { withRouter } from 'react-router-dom'
 import Message from '../message'
 import Signup from '../../assets/img/signup.webp'
 import Logo from '../../assets/img/logo.png'
-import ParentLoading from '../parentLoading'
 import CloseSvg from '../../assets/svg/close.svg'
 
 class SignUp extends React.Component {
@@ -26,7 +25,7 @@ class SignUp extends React.Component {
   handleSubmit = async event => {
     event.preventDefault()
 
-    const { name, email, password, confirmPassword } = this.state
+    const { name, email, password } = this.state
 
     // if (password !== confirmPassword) {
     //   this.setState({ error: 'Confirm password not match' })
@@ -37,7 +36,7 @@ class SignUp extends React.Component {
       await this.setState({ loading: true })
       const result = await SignupWithEmail(name, email, password)
 
-      if (result.data.status == 200) {
+      if (result.data.status === 200) {
         this.props.setCurrentUser({
           name,
           email,
