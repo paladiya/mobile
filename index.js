@@ -11,6 +11,7 @@ var compression = require('compression')
 const port = 4000
 options = {
   useNewUrlParser: true,
+  useUnifiedTopology: true,
   auth: {
     authSource: 'admin'
   },
@@ -34,7 +35,6 @@ app.use(express.json())
 
 app.use(bodyParser.json({ type: 'application/json' }))
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser({ keepExtensions: true }))
 
 app.use(express.static('uploads'))
 app.use(morgan('dev'))
@@ -54,7 +54,24 @@ app.use('/image', imageRoutes)
 
 if (process.env.NODE_ENV === 'production') {
   console.log(process.env.NODE_ENV)
+
   app.use(express.static(path.join(__dirname, 'client/build')))
+
+  app.get('/', (req, res) => {
+    console.log('Home page visited!')
+    const filePath = path.resolve(__dirname, 'client', 'build', 'index.html')
+
+    // read in the index.html file
+    fs.readFile(filePath, 'utf8', function (err, data) {
+      if (err) {
+        return console.log('read error', err)
+      }
+      data = data.replace(/\$OG_TITLE/g, 'Home Page')
+      data = data.replace(/\$OG_DESCRIPTION/g, 'Home page description')
+      result = data.replace(/\$OG_IMAGE/g, 'https://i.imgur.com/V7irMl8.png')
+      response.send(result)
+    })
+  })
 
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
