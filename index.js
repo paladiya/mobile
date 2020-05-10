@@ -46,12 +46,6 @@ app.use((req, res, next) => {
   next()
 })
 
-app.use(fileUpload())
-app.use('/user', authRoutes)
-app.use('/post', postRoutes)
-app.use('/file', fileRoutes)
-app.use('/image', imageRoutes)
-
 if (process.env.NODE_ENV === 'production') {
   console.log(process.env.NODE_ENV)
 
@@ -77,6 +71,12 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
   })
 }
+
+app.use(fileUpload())
+app.use('/user', authRoutes)
+app.use('/post', postRoutes)
+app.use('/file', fileRoutes)
+app.use('/image', imageRoutes)
 
 app.use((req, res, next) => {
   const error = new Error('Not found')

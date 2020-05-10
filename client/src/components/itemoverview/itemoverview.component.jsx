@@ -136,7 +136,7 @@ class ItemOverViewComponent extends Component {
               content="'Download free Latest Ringtones and HD, mobile,  wallaper  Free on Mobile69.in"
             />
             <meta
-              property='image'
+              property='og:image'
               content={`${window.location.href}/api/${this.state.post.types}/resize/${this.state.post.fileName}`}
             />
              <meta
@@ -150,10 +150,6 @@ class ItemOverViewComponent extends Component {
             <meta
               property='og:description'
               content='Download free Latest Ringtones and HD, mobile,  wallaper  Free on Mobile69. billion s of popular wallpaper and ringtones on mobile69 personalize your phone to suit you Browse our Content for free :)'
-            />
-            <meta
-              property='og:image'
-              content={`${window.location.href}/api/${this.state.post.types}/resize/${this.state.post.fileName}`}
             />
             <meta
               property='og:image:secure_url'
