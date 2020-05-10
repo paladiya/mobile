@@ -73,7 +73,10 @@ export class SharePopup extends Component {
               >
                 <PinterestIcon size={42} round />
               </PinterestShareButton>
-              <WhatsappShareButton url={this.props.shareLink}>
+              <WhatsappShareButton
+                url={this.props.shareLink}
+                media={this.props.img}
+              >
                 <WhatsappIcon size={42} />
               </WhatsappShareButton>
             </div>

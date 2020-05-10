@@ -74,7 +74,7 @@ class Header extends Component {
             className='col-md-2 menu '
             onClick={() => this.props.toggleSlider()}
           >
-            <img src={BAR} className='.img-fluid' />
+            <img src={BAR} className='.img-fluid' width={30} height={30} />
           </div>
         </div>
         <hr className='divider' />

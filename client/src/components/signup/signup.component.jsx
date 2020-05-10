@@ -47,9 +47,16 @@ class SignUp extends React.Component {
       } else {
         this.setState({ error: result.data.title })
       }
-      this.setState({ email: '', password: '', name: '', confirmPassword: '' })
+      this.setState({
+        email: '',
+        password: '',
+        name: '',
+        confirmPassword: '',
+        loading: false
+      })
     } catch (error) {
       console.log(`sign up error ${error}`)
+      this.setState({ loading: false })
     }
   }
 
@@ -61,7 +68,6 @@ class SignUp extends React.Component {
   render () {
     return (
       <div className='signup'>
-        {this.state.loading && <ParentLoading />}
         <div className='container-fluid'>
           <div className='card login-card'>
             <div className='row'>
@@ -71,8 +77,8 @@ class SignUp extends React.Component {
               <div className='close'>
                 <img
                   src={CloseSvg}
-                  width={40}
-                  height={40}
+                  width={25}
+                  height={25}
                   onClick={() => this.props.history.replace('/')}
                 />
               </div>

@@ -83,25 +83,19 @@ class SignIn extends React.Component {
           })
           this.props.history.push('/')
         } else if (result.data.status == 403) {
-          this.setState({ error: result.data.title })
+          this.setState({ error: result.data.title,loading:false })
         }
       } catch (error) {
-        this.setState({ error: error.message })
+        this.setState({ error: error.message,loading:false })
       }
     } else {
-      this.setState({ error: 'Something went wrong with Google try with us ' })
+      this.setState({ error: 'Something went wrong with Google try with us ', loading:false })
     }
-  }
-
-  responseGoogleFailed = error => {
-    console.log(error)
-    this.setState({ error: 'Something went wrong with Google pls try with us' })
   }
 
   render () {
     return (
       <div className='d-flex align-items-center min-vh-100 py-3 py-md-0'>
-        {/* {this.state.loading && <ParentLoading />} */}
 
         <div className='container'>
           <div className='card login-card'>

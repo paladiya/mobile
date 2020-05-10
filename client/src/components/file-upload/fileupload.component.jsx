@@ -64,7 +64,7 @@ class FileuploadComponent extends Component {
       cursorWidth: 5,
       barWidth: 1,
       barRadius: 3,
-      height: 80,
+      height: 100,
       barGap: 3,
       scrollParent: true,
       plugins: [
@@ -89,8 +89,8 @@ class FileuploadComponent extends Component {
             cursor: 'col-resize',
             position: 'absolute',
             top: '0px',
-            maxWidth: '100px',
-            minWidth: '10px',
+            maxWidth: '150px',
+            minWidth: '20px',
             left: '0px'
           },
           right: {
@@ -100,8 +100,8 @@ class FileuploadComponent extends Component {
             cursor: 'col-resize',
             position: 'absolute',
             top: '0px',
-            maxWidth: '100px',
-            minWidth: '10px',
+            maxWidth: '150px',
+            minWidth: '20px',
             right: '0px'
           }
         }
@@ -126,14 +126,14 @@ class FileuploadComponent extends Component {
         success: false,
         message: `Select max file size ${process.env.REACT_APP_MAX_FILE_SIZE} MB`
       })
-
+      setTimeout(() => {
+        window.scrollTo(0, this.messageRef.current.offsetTop)
+      }, 200)
       return
     }
 
-    if (this.imageExt.includes(fileType)) {
+    if (file.type.toLowerCase().indexOf('image') > -1) {
       fileType = 'image'
-    } else if (this.videoExt.includes(fileType)) {
-      fileType = 'video'
     } else if (isAudio(file)) {
       fileType = 'music'
       this.initMusic(file)
@@ -188,15 +188,17 @@ class FileuploadComponent extends Component {
     this.setState({ fileOriginName: e.target.value })
   }
 
-  blobToFile = (theBlob, fileName) => {
-    //A Blob() is almost a File() - it's just missing the two properties below which we will add
-    theBlob.lastModifiedDate = new Date()
-    theBlob.name = fileName
-    return theBlob
-  }
-
   onSubmit = async e => {
     e.preventDefault()
+
+    if (!this.state.file) {
+      this.setState({ message: 'Please select file' })
+      this.setState({ success: false })
+      setTimeout(() => {
+        window.scrollTo(0, this.messageRef.current.offsetTop)
+      }, 200)
+      return false
+    }
 
     if (this.state.tags.length <= 0) {
       const tag = document.getElementById('inputfilelabel')
@@ -207,6 +209,9 @@ class FileuploadComponent extends Component {
       } else {
         this.setState({ message: 'Please enter teg with spacebar' })
         this.setState({ success: false })
+        setTimeout(() => {
+          window.scrollTo(0, this.messageRef.current.offsetTop)
+        }, 200)
         return false
       }
     }
@@ -335,7 +340,6 @@ class FileuploadComponent extends Component {
         var url = URL.createObjectURL(file)
         console.log('url ', url)
         this.setState({ url: url })
-        // var myFile = this.blobToFile(file, `${this.state.file.name}.mp3`)
         var myFile = await new File([file], `${this.state.file.name}.mp3`, {
           lastModified: new Date().now
         })
@@ -407,12 +411,14 @@ class FileuploadComponent extends Component {
               className='custom-file-input'
               id='validatedCustomFile'
               onChange={this.onChageInput}
+              maxLength={10}
               required
             />
           </div>
           <div className='form-group mt-4'>
             <label htmlFor='inputFileName'>File Name</label>
             <input
+              maxLength='10'
               value={this.state.fileOriginName}
               onChange={this.onChangeFileName}
               type='text'
@@ -469,7 +475,7 @@ class FileuploadComponent extends Component {
           <Progress percentage={this.state.progress} />
 
           <Message
-            ref={this.messageref}
+            ref={this.messageRef}
             message={this.state.message}
             success={this.state.success}
           />

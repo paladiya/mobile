@@ -275,10 +275,8 @@ class ItemOverViewComponent extends Component {
               hide={this.hide}
               img={
                 this.state.post.types == 'image'
-                  ? window.location.href +
-                    `/api/${this.state.post.types}/` +
-                    this.state.post.fileName
-                  : window.location.href + 'original.png'
+                  ? `${window.location.href}/api/${this.state.post.types}/${this.state.post.fileName}`
+                  : `${window.location.href}/original.png`
               }
             />
           )}

@@ -33,9 +33,9 @@ class SliderComponent extends Component {
         <div className='content text-left col-md-3 col-sm-12 '>
           <img
             src={CloseSvg}
-            width={25}
-            height={25}
-            className='text-white py-1 align-self-start '
+            width={50}
+            height={50}
+            className='text-white py-2 align-self-start '
             onClick={() => this.props.toggleSlider()}
           />
 

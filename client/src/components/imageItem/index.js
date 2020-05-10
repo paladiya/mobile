@@ -34,12 +34,9 @@ class ImageItem extends Component {
     console.log(result)
   }
 
-  componentDidMount () {
-    
-  }
+  componentDidMount () {}
 
   render () {
-    
     return (
       <div className={`${this.props.col} list-item align-self-center`}>
         <Link
@@ -62,7 +59,10 @@ class ImageItem extends Component {
               )}
               {this.props.delete && (
                 <img
-                  src={CloseSvg} width={20} height={20}
+                  className='btn-close'
+                  src={CloseSvg}
+                  width={25}
+                  height={25}
                   onClick={async () => {
                     let deleteId = await this.deleteImage(this.props.item._id)
                     this.props.updateGallery(deleteId)

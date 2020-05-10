@@ -144,14 +144,14 @@ class MusicItem extends Component {
             <div className='card-img-overlay'>
               {this.props.delete && (
                 <img
+                  className='btn-close'
                   src={CloseSvg}
-                  width={30}
-                  height={30}
+                  width={25}
+                  height={25}
                   onClick={async () => {
                     let deleteId = await this.deleteImage(this.props.item._id)
                     this.props.updateGallery(deleteId)
                   }}
-                  className='btn-close'
                 />
               )}
             </div>

@@ -3,7 +3,7 @@
  * @param {File} file
  */
 export const isAudio = file =>
-  file.type.indexOf('audio') > -1
+  file.type.toLowerCase().indexOf('audio') > -1
 
 /**
  * create range [min .. max]
