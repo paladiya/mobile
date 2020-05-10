@@ -129,57 +129,43 @@ class ItemOverViewComponent extends Component {
     return this.state.pageFound ? (
       this.state.post ? (
         <div className='parent '>
-          {this.state.post.types === 'image' ? (
-            <Helmet>
-              <title>{this.state.post.fileOriginName}</title>
-              <meta
-                name='description'
-                content="'Download free Latest Ringtones and HD, mobile,  wallaper  Free on Mobile69.in"
-              />
-              <meta
-                property='image'
-                content={`${window.location.href}/api/${this.state.post.types}/resize/${this.state.post.fileName}`}
-              />
-              <meta
-                property='og:title'
-                content={this.state.post.fileOriginName}
-              />
-              <meta
-                property='og:description'
-                content='Download free Latest Ringtones and HD, mobile,  wallaper  Free on Mobile69. billion s of popular wallpaper and ringtones on mobile69 personalize your phone to suit you Browse our Content for free :)'
-              />
-              <meta
-                property='og:image'
-                content={`${window.location.href}/api/${this.state.post.types}/resize/${this.state.post.fileName}`}
-              />
-              <meta
-                property='og:image:secure_url'
-                content={`${window.location.href}/api/${this.state.post.types}/resize/${this.state.post.fileName}`}
-              />
+          <Helmet>
+            <title>{this.state.post.fileOriginName}</title>
+            <meta
+              name='description'
+              content="'Download free Latest Ringtones and HD, mobile,  wallaper  Free on Mobile69.in"
+            />
+            <meta
+              property='image'
+              content={`${window.location.href}/api/${this.state.post.types}/resize/${this.state.post.fileName}`}
+            />
+             <meta
+              property='image'
+              content={`${window.location.href}/original.png}`}
+            />
+            <meta
+              property='og:title'
+              content={this.state.post.fileOriginName}
+            />
+            <meta
+              property='og:description'
+              content='Download free Latest Ringtones and HD, mobile,  wallaper  Free on Mobile69. billion s of popular wallpaper and ringtones on mobile69 personalize your phone to suit you Browse our Content for free :)'
+            />
+            <meta
+              property='og:image'
+              content={`${window.location.href}/api/${this.state.post.types}/resize/${this.state.post.fileName}`}
+            />
+            <meta
+              property='og:image:secure_url'
+              content={`${window.location.href}/api/${this.state.post.types}/resize/${this.state.post.fileName}`}
+            />
 
-              <meta property='og:image:type' content='image/jpeg' />
-              <meta property='og:image:width' content='400' />
-              <meta property='og:image:height' content='300' />
-              <meta property='og:image:alt' content='Mobile69.in' />
-            </Helmet>
-          ) : (
-            <Helmet>
-              <title>{this.state.post.fileOriginName}</title>
+            <meta property='og:image:type' content='image/jpeg' />
+            <meta property='og:image:width' content='400' />
+            <meta property='og:image:height' content='300' />
+            <meta property='og:image:alt' content='Mobile69.in' />
+          </Helmet>
 
-              <meta
-                property='og:title'
-                content={this.state.post.fileOriginName}
-              />
-              <meta
-                property='og:description'
-                content='Download free Latest Ringtones and HD, mobile,  wallaper  Free on Mobile69. billion s of popular wallpaper and ringtones on mobile69 personalize your phone to suit you Browse our Content for free :)'
-              />
-              <meta
-                property='og:audio'
-                content={`${window.location.href}/api/${this.state.post.types}/resize/${this.state.post.fileName}`}
-              />
-            </Helmet>
-          )}
           <div>
             <HeaderComponent />
             {!this.state.isZoom && (
