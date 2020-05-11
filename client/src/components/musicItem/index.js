@@ -124,7 +124,7 @@ class MusicItem extends Component {
             </div>
           ) : (
             <CircularProgressbar
-              className='progress'
+              className='w-5 h-5 progress'
               value={this.state.audioPercent}
             />
           )}
@@ -137,9 +137,7 @@ class MusicItem extends Component {
             onClick={e => !this.props.isActive && e.preventDefault()}
           >
             {this.props.name && (
-              <h5 className='card-title ml-3'>
-                {this.props.item.fileOriginName}
-              </h5>
+              <h5 className='card-title'>{this.props.item.fileOriginName}</h5>
             )}
             <div className='card-img-overlay'>
               {this.props.delete && (

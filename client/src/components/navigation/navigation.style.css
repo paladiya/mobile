@@ -3,11 +3,11 @@
   margin: 0px !important;
 }
 .navigation .tab {
-  font-weight: 500;
-  padding: 8px;
+  font-weight: 600;
+  padding-right: 8px;
   margin: 4px;
   border-radius: 10px;
-  font-size: 18px;
+  font-size: 17px;
 }
 .navigation .tab .text {
   color: white;

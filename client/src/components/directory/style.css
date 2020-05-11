@@ -9,12 +9,12 @@
   flex-direction: row;
   flex-flow: row wrap;
   justify-content: flex-start;
-  margin-top: 20px !important;
+  margin-top: 6px !important;
 }
 .list-item {
   position: relative;
-  padding: 5px;
-  margin-bottom: 10px !important;
+  padding: 2px;
+  margin-bottom: 5px !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,12 +24,12 @@
 .img-cover {
   padding: 0px;
   margin: 0px;
-  height: 350px;
+  height: 300px;
   object-fit: "cover";
 }
 @media (max-width: 575.98px) {
   .img-cover {
-    height: 250px;
+    height: 200px;
   }
 }
 .btn-close {
@@ -48,8 +48,8 @@
   position: absolute;
 }
 .img-media {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
 }
 .parent-media {
   margin: auto;
@@ -60,9 +60,12 @@
   justify-content: center;
 }
 .card-title {
+  font-weight: 600;
+  font-size: 15px;
   max-width: 12ch;
   position: absolute;
   bottom: 0;
+  left: 5px;
   color: white;
   text-transform: camelCase;
   white-space: nowrap;

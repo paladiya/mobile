@@ -1,7 +1,7 @@
 .progress {
   position: absolute;
-  width: 120px;
-  height: 120px;
+  width: 70px;
+  height: 70px;
   background: #ffffff00;
   align-self: center;
 }

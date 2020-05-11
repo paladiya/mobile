@@ -12,8 +12,8 @@ import Loading from './components/loading'
 import { connect } from 'react-redux'
 import { selectCat } from './redux/category/cat-selector'
 import Test from './components/player'
-import UploadPage from './pages/uploadpage/upload.page'
 
+import UploadPage from './pages/uploadpage/upload.page'
 import FindComponent from './components/find/index'
 import MultipleUploadPage from './pages/multipleUploadPage/multipleUploadPage'
 import signupComponent from './components/signup/signup.component'
@@ -42,7 +42,7 @@ class App extends React.Component {
 
   render () {
     return (
-      <div className='App container-md'>
+      <div className='App'>
         <Switch>
           <Route path='/fileupload' component={UploadPage} />
           <Route path='/find/:searchTerm' component={FindComponent} />
@@ -68,14 +68,6 @@ class App extends React.Component {
               )}
             />
           </HomepageComponent>
-
-          {/* <Route exact path='/' component={HomepageComponent} />
-          <Route
-            pat='/ringtones-and-wallpapers'
-            component={RingtonesWallpaper}
-          />
-          <Route pat='/ringtones' component={} />
-          <Route pat='/wallpapers' component={} /> */}
         </Switch>
       </div>
     )

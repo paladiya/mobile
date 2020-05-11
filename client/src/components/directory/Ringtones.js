@@ -92,7 +92,7 @@ class Ringtones extends Component {
                 item={item}
                 isActive={true}
                 name={true}
-                col='col-md-3 col-6'
+                col='col-md-2 col-4'
               />
             )
           })}

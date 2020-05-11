@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const verifyToken = require('./verifyToken')
 const file = require('../models/File')
+const mongoose = require('mongoose')
 const fs = require('fs')
 const pagination = 24
 const Auth = require('../auth')
@@ -15,16 +16,47 @@ router.post('/all', async (req, res) => {
   console.log('all = ', req.body)
 
   let pageNum = req.body.pageNum
+  let _id = req.body._id
+  if (_id === 0) {
+    file
+      .find({})
+      .sort({ _id: -1 })
+      .limit(pagination)
+      .then(files => {
+        console.log('files ', files.length)
+
+        if (files.length > 0) {
+          res
+            .status(200)
+            .json({ files: files, isLast: files.length < pagination })
+        } else {
+          res.status(200).json({ message: 'No Record Found' })
+        }
+      })
+      .catch(error => {
+        console.log('catch', error)
+        res.status(500).json({ message: error })
+      })
+  }
+  // if (req.body._id) {
+  //   console.log(req.body._id)
+  //   _id = req.body._id
+  // } else {
+  //   _id = false
+  // }
+
   file
-    .find({})
+    .find({ _id: { $lt: mongoose.Types.ObjectId(_id) } })
     .sort({ _id: -1 })
-    .skip((pageNum - 1) * pagination)
+    // .skip((pageNum - 1) * pagination)
     .limit(pagination)
     .then(files => {
       console.log('files ', files.length)
 
       if (files.length > 0) {
-        res.status(200).json({ files: files })
+        res
+          .status(200)
+          .json({ files: files, isLast: files.length < pagination })
       } else {
         res.status(200).json({ message: 'No Record Found' })
       }
@@ -190,8 +222,6 @@ router.post('/delete', verifyToken, async (req, res) => {
   }
 })
 
-router.get('/musicCat',(req,res)=>{
-  
-})
+router.get('/musicCat', (req, res) => {})
 
 module.exports = router

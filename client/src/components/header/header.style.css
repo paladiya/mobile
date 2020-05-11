@@ -7,11 +7,10 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding-bottom: 10px;
 }
 #header .logo {
   width: 150px;
-  height: 60px;
+  height: 50px;
   padding: 0px !important;
   text-justify: center;
 }
