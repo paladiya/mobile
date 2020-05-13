@@ -49,35 +49,33 @@ app.use((req, res, next) => {
 
 app.use(fileUpload())
 app.use('/user', authRoutes)
-app.use('/post', postRoutes)
+app.use('/api/post', postRoutes)
 app.use('/file', fileRoutes)
 app.use('/image', imageRoutes)
 
-if (process.env.NODE_ENV === 'production') {
-  console.log(process.env.NODE_ENV)
+console.log(process.env.NODE_ENV)
 
-  app.use(express.static(path.join(__dirname, 'client/build')))
+app.use(express.static(path.join(__dirname, 'client/build')))
 
-  app.get('/image/:id', (req, res) => {
-    console.log('Home page visited!')
-    const filePath = path.resolve(__dirname, 'client', 'build', 'index.html')
+app.get('/image/:id', (req, res) => {
+  console.log('Home page visited!')
+  const filePath = path.resolve(__dirname, 'client', 'build', 'index.html')
 
-    // read in the index.html file
-    fs.readFile(filePath, 'utf8', function (err, data) {
-      if (err) {
-        return console.log('read error', err)
-      }
-      data = data.replace(/\$OG_TITLE/g, 'Home Page')
-      data = data.replace(/\$OG_DESCRIPTION/g, 'Home page description')
-      result = data.replace(/\$OG_IMAGE/g, 'https://i.imgur.com/V7irMl8.png')
-      res.send(result)
-    })
+  // read in the index.html file
+  fs.readFile(filePath, 'utf8', function (err, data) {
+    if (err) {
+      return console.log('read error', err)
+    }
+    data = data.replace(/\$OG_TITLE/g, 'Home Page')
+    data = data.replace(/\$OG_DESCRIPTION/g, 'Home page description')
+    result = data.replace(/\$OG_IMAGE/g, 'https://i.imgur.com/V7irMl8.png')
+    res.send(result)
   })
+})
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
-  })
-}
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+})
 
 app.use((req, res, next) => {
   const error = new Error('Not found')

@@ -8,6 +8,7 @@ import Message from '../message'
 import Signup from '../../assets/img/signup.webp'
 import Logo from '../../assets/img/logo.png'
 import CloseSvg from '../../assets/svg/close.svg'
+import { Helmet } from 'react-helmet'
 
 class SignUp extends React.Component {
   constructor (prop) {
@@ -67,6 +68,13 @@ class SignUp extends React.Component {
   render () {
     return (
       <div className='signup'>
+        <Helmet>
+          <title>Signup</title>
+          <meta
+            name='description'
+            content="'Download free Latest Ringtones and HD, mobile,  wallaper  Free on Mobile69.in"
+          />
+        </Helmet>
         <div className='container-fluid'>
           <div className='card login-card'>
             <div className='row'>

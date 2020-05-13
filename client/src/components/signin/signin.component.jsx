@@ -8,6 +8,7 @@ import Message from '../message'
 import Login from '../../assets/img/login.webp'
 import Logo from '../../assets/img/logo.png'
 import CloseSvg from '../../assets/svg/close.svg'
+import { Helmet } from 'react-helmet'
 
 class SignIn extends React.Component {
   constructor (prop) {
@@ -96,7 +97,13 @@ class SignIn extends React.Component {
   render () {
     return (
       <div className='d-flex align-items-center min-vh-100 py-3 py-md-0'>
-
+   <Helmet>
+            <title>Signin</title>
+            <meta
+              name='description'
+              content="'Download free Latest Ringtones and HD, mobile,  wallaper  Free on Mobile69.in"
+            />
+            </Helmet>
         <div className='container'>
           <div className='card login-card'>
             <div className='row no-gutters'>
