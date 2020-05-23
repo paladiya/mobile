@@ -9,7 +9,7 @@ const dotenv = require('dotenv').config()
 var compression = require('compression')
 const fs = require('fs')
 
-const port = 5000
+const port = 4000
 options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -55,7 +55,14 @@ app.use('/image', imageRoutes)
 
 console.log(process.env.NODE_ENV)
 
-// app.use(express.static(path.join(__dirname, 'client/build')))
+if (process.env.NODE_ENV === 'production') {
+  console.log(process.env.NODE_ENV)
+  app.use(express.static(path.join(__dirname, 'client/build')))
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+  })
+}
 
 // app.get('/image/:id', (req, res) => {
 //   console.log('Home page visited!')
@@ -73,15 +80,11 @@ console.log(process.env.NODE_ENV)
 //   })
 // })
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
-})
-
-app.use((req, res, next) => {
-  const error = new Error('Not found')
-  error.status = 404
-  next(error)
-})
+// app.use((req, res, next) => {
+//   const error = new Error('Not found')
+//   error.status = 404
+//   next(error)
+// })
 
 app.use((error, req, res, next) => {
   res.status(error.status || 500)

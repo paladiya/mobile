@@ -3,7 +3,7 @@ const verifyToken = require('./verifyToken')
 const file = require('../models/File')
 const mongoose = require('mongoose')
 const fs = require('fs')
-const pagination = 5
+const pagination = 24
 const Auth = require('../auth')
 const musicCat = []
 const wallCat = []
@@ -12,7 +12,7 @@ router.get('/', verifyToken, (req, res) => {
   res.json({ post: { title: 'title', description: 'description' } })
 })
 
-router.get('/all', async (req, res) => {
+router.post('/all', async (req, res) => {
   console.log('all = ', req.body)
 
   let _id = req.body._id
