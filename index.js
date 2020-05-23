@@ -9,7 +9,7 @@ const dotenv = require('dotenv').config()
 var compression = require('compression')
 const fs = require('fs')
 
-const port = 4000
+const port = 5000
 options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -37,7 +37,7 @@ app.use(express.json())
 app.use(bodyParser.json({ type: 'application/json' }))
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.use(express.static('uploads'))
+app.use('uploads', express.static('uploads'))
 app.use(morgan('dev'))
 app.use(compression())
 
@@ -48,30 +48,30 @@ app.use((req, res, next) => {
 })
 
 app.use(fileUpload())
-app.use('/user', authRoutes)
-app.use('/api/post', postRoutes)
+app.use('/auth', authRoutes)
+app.use('/post', postRoutes)
 app.use('/file', fileRoutes)
 app.use('/image', imageRoutes)
 
 console.log(process.env.NODE_ENV)
 
-app.use(express.static(path.join(__dirname, 'client/build')))
+// app.use(express.static(path.join(__dirname, 'client/build')))
 
-app.get('/image/:id', (req, res) => {
-  console.log('Home page visited!')
-  const filePath = path.resolve(__dirname, 'client', 'build', 'index.html')
+// app.get('/image/:id', (req, res) => {
+//   console.log('Home page visited!')
+//   const filePath = path.resolve(__dirname, 'client', 'build', 'index.html')
 
-  // read in the index.html file
-  fs.readFile(filePath, 'utf8', function (err, data) {
-    if (err) {
-      return console.log('read error', err)
-    }
-    data = data.replace(/\$OG_TITLE/g, 'Home Page')
-    data = data.replace(/\$OG_DESCRIPTION/g, 'Home page description')
-    result = data.replace(/\$OG_IMAGE/g, 'https://i.imgur.com/V7irMl8.png')
-    res.send(result)
-  })
-})
+//   // read in the index.html file
+//   fs.readFile(filePath, 'utf8', function (err, data) {
+//     if (err) {
+//       return console.log('read error', err)
+//     }
+//     data = data.replace(/\$OG_TITLE/g, 'Home Page')
+//     data = data.replace(/\$OG_DESCRIPTION/g, 'Home page description')
+//     result = data.replace(/\$OG_IMAGE/g, 'https://i.imgur.com/V7irMl8.png')
+//     res.send(result)
+//   })
+// })
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))

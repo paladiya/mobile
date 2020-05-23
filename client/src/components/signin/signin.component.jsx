@@ -97,7 +97,7 @@ class SignIn extends React.Component {
   render () {
     return (
       <div className='d-flex align-items-center min-vh-100 py-3 py-md-0'>
-   <Helmet>
+            <Helmet>
             <title>Signin</title>
             <meta
               name='description'

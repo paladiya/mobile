@@ -57,9 +57,8 @@ router.post('/register', async (req, res) => {
 
   const emailExist = await User.findOne({ email: req.body.email })
   if (emailExist) {
-    return res.send({
-      title: `${req.body.email} is already taken`,
-      status: 403
+    return res.status(422).send({
+      message: `${req.body.email} is already taken`
     })
   }
 
@@ -74,11 +73,12 @@ router.post('/register', async (req, res) => {
   try {
     const savedUser = await user.save()
     const token = jwt.sign({ _id: savedUser._id }, process.env.JSON_SECRET)
-    res.header('authentication', token).send({ status: 200, id: savedUser.id })
+    await delete savedUser.password
+    console.log('user', savedUser.password)
+    res.header('authentication', token).send({ status: 200, user: savedUser })
   } catch (error) {
-    return res.send({
-      title: error,
-      status: 403
+    return res.status(403).send({
+      message: error
     })
   }
 })
@@ -90,9 +90,8 @@ router.post('/login', async (req, res) => {
   if (error) {
     console.log('validation error')
     console.log(error.details[0].message)
-    return res.send({
-      title: error.details[0].message,
-      status: 403
+    return res.status(403).send({
+      message: error.details[0].message
     })
   }
 
@@ -100,9 +99,8 @@ router.post('/login', async (req, res) => {
   if (!user) {
     console.log('find error')
 
-    return res.send({
-      title: 'Incorrect username or password.',
-      status: 403
+    return res.status(403).send({
+      message: 'Incorrect username or password.'
     })
   }
 
@@ -110,9 +108,8 @@ router.post('/login', async (req, res) => {
   if (!validPass) {
     console.log('pass error')
 
-    return res.send({
-      title: 'Incorrect username or password.',
-      status: 403
+    return res.status(403).send({
+      message: 'Incorrect username or password.'
     })
   }
 
@@ -120,7 +117,8 @@ router.post('/login', async (req, res) => {
 
   return res
     .header('authentication', token)
-    .send({ name: user.name, email: user.email, status: 200, id: user.id })
+    .status(200)
+    .send({ user })
 })
 
 module.exports = router
