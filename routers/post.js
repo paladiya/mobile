@@ -34,7 +34,7 @@ router.post('/all', async (req, res) => {
       })
       .catch(error => {
         console.log('catch', error)
-        res.status(500).json({ message: error })
+        //res.status(500).json({ message: error })
       })
   }
   // if (req.body._id) {
