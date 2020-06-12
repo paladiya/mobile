@@ -16,38 +16,13 @@ router.post('/all', async (req, res) => {
   console.log('all = ', req.body)
 
   let _id = req.body._id
-  if (_id === 0) {
-    file
-      .find({})
-      .sort({ _id: -1 })
-      .limit(pagination)
-      .then(files => {
-        console.log('files ', files.length)
-
-        if (files.length > 0) {
-          res
-            .status(200)
-            .json({ files: files, isLast: files.length < pagination })
-        } else {
-          res.status(200).json({ message: 'No Record Found' })
-        }
-      })
-      .catch(error => {
-        console.log('catch', error)
-        //res.status(500).json({ message: error })
-      })
-  }
-  // if (req.body._id) {
-  //   console.log(req.body._id)
-  //   _id = req.body._id
-  // } else {
-  //   _id = false
-  // }
-
+  let find = {}
+  if (_id !== 0) {
+    find = { _id: { $lt: mongoose.Types.ObjectId(_id) } }
+  } 
   file
-    .find({ _id: { $lt: mongoose.Types.ObjectId(_id) } })
+    .find(find)
     .sort({ _id: -1 })
-    // .skip((pageNum - 1) * pagination)
     .limit(pagination)
     .then(files => {
       console.log('files ', files.length)
@@ -78,7 +53,7 @@ router.post('/ringtones', async (req, res) => {
       console.log('files ', files.length)
 
       if (files.length > 0) {
-        res.status(200).json({ files: files })
+        res.status(200).json({ files: files, isLast: files.length < pagination })
       } else {
         res.status(200).json({ message: 'No Record Found' })
       }
@@ -101,7 +76,7 @@ router.post('/wallpaper', async (req, res) => {
       console.log('files ', files.length)
 
       if (files.length > 0) {
-        res.status(200).json({ files: files })
+        res.status(200).json({ files: files, isLast: files.length < pagination })
       } else {
         res.status(200).json({ message: 'No Record Found' })
       }
@@ -113,7 +88,7 @@ router.post('/wallpaper', async (req, res) => {
 })
 
 router.post('/find', async (req, res) => {
-  console.log(req.body.searchTerm)
+  console.log(req.body)
   let pageNum = req.body.pageNum
   const searchTerm = req.body.searchTerm
   file
@@ -131,7 +106,7 @@ router.post('/find', async (req, res) => {
       console.log('files ', files.length)
 
       if (files.length > 0) {
-        res.status(200).json({ files: files })
+        res.status(200).json({ files: files, isLast: files.length < pagination })
       } else {
         res.status(200).json({ message: 'No Record Found' })
       }

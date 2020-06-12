@@ -139,7 +139,7 @@ class ItemOverViewComponent extends Component {
               property='og:image'
               content={`${window.location.href}/api/${this.state.post.types}/resize/${this.state.post.fileName}`}
             />
-             <meta
+            <meta
               property='image'
               content={`${window.location.href}/original.png}`}
             />
@@ -229,6 +229,7 @@ class ItemOverViewComponent extends Component {
                         this.plusDownload()
                       }, 3000)
                     }}
+                    target='_blank'
                   >
                     Download
                   </a>

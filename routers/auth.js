@@ -47,6 +47,30 @@ router.post('/googleRegister', async (req, res) => {
   }
 })
 
+router.post('/verifyUser', async (req, res) => {
+  try {
+    const token = req.body.jwt
+    console.log(token)
+    const verified = jwt.verify(token, process.env.JSON_SECRET)
+    console.log(verified)
+    if (verified) {
+      User.findById(verified, (error, user) => {
+        if (res) {
+          user.password = undefined;
+          res.send(user)
+        } else {
+          res.status(422).send(error)
+        }
+      })
+    } else {
+      res.status(422).send('User not verified')
+    }
+  } catch (error) {
+    console.log(error)
+    res.status(422).send(error)
+  }
+})
+
 // require('dotenv').config()
 router.post('/register', async (req, res) => {
   console.log('call register' + JSON.stringify(req.body))
@@ -95,15 +119,13 @@ router.post('/login', async (req, res) => {
     })
   }
 
-  const user = await User.findOne({ email: req.body.email })
+  let user = await User.findOne({ email: req.body.email })
+  console.log(user)
   if (!user) {
-    console.log('find error')
-
     return res.status(403).send({
       message: 'Incorrect username or password.'
     })
   }
-
   const validPass = await bcrypt.compare(req.body.password, user.password)
   if (!validPass) {
     console.log('pass error')
@@ -118,7 +140,13 @@ router.post('/login', async (req, res) => {
   return res
     .header('authentication', token)
     .status(200)
-    .send({ user })
+    .send({
+      user: {
+        user_name: user.name,
+        user_email: user.email,
+        user_id: user._id
+      }
+    })
 })
 
 module.exports = router
