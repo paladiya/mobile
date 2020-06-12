@@ -56,7 +56,7 @@ router.post('/verifyUser', async (req, res) => {
     if (verified) {
       User.findById(verified, (error, user) => {
         if (res) {
-          user.password = undefined;
+          user.password = undefined
           res.send(user)
         } else {
           res.status(422).send(error)
@@ -137,16 +137,14 @@ router.post('/login', async (req, res) => {
 
   const token = jwt.sign({ _id: user._id }, process.env.JSON_SECRET)
 
-  return res
-    .header('authentication', token)
-    .status(200)
-    .send({
-      user: {
-        user_name: user.name,
-        user_email: user.email,
-        user_id: user._id
-      }
-    })
+  return res.status(200).send({
+    user: {
+      user_name: user.name,
+      user_email: user.email,
+      user_id: user._id,
+      jwt: token
+    }
+  })
 })
 
 module.exports = router
