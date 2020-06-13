@@ -35,7 +35,7 @@ router.post('/upload', async (req, res) => {
   const jwtToken = req.header('auth-token')
   jwt.verify(jwtToken, process.env.JSON_SECRET, function (error, decoded) {
     if (!error) {
-      let fileType = file.name.split('.').pop()
+      let fileType = file.name.split('.').pop().toLowerCase()
       let newFileName = mongoose.Types.ObjectId() + '.' + fileType
       console.log(image.includes(fileType))
       if (image.includes(fileType)) {
