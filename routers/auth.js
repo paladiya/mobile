@@ -51,6 +51,9 @@ router.post('/verifyUser', async (req, res) => {
   try {
     const token = req.body.jwt
     console.log(token)
+    if (!token) {
+      return res.status(422).json('Data missing')
+    }
     const verified = jwt.verify(token, process.env.JSON_SECRET)
     console.log(verified)
     if (verified) {
@@ -71,13 +74,12 @@ router.post('/verifyUser', async (req, res) => {
   }
 })
 
-// require('dotenv').config()
 router.post('/register', async (req, res) => {
   console.log('call register' + JSON.stringify(req.body))
-  // const { error } = registerValidation(req.body)
-  // if (error) {
-  //   return res.status(400).json(error.details[0].message)
-  // }
+  const { error } = registerValidation(req.body)
+  if (error) {
+    return res.status(422).json(error.details[0].message)
+  }
 
   const emailExist = await User.findOne({ email: req.body.email })
   if (emailExist) {
@@ -95,13 +97,11 @@ router.post('/register', async (req, res) => {
     password: hashPass
   })
   try {
-    const savedUser = await user.save()
+    var savedUser = await user.save()
     const token = jwt.sign({ _id: savedUser._id }, process.env.JSON_SECRET)
-    await delete savedUser.password
-    console.log('user', savedUser.password)
-    res.header('authentication', token).send({ status: 200, user: savedUser })
+    res.status(200).send({ user: { ...savedUser, password: token } })
   } catch (error) {
-    return res.status(403).send({
+    return res.status(422).send({
       message: error
     })
   }
@@ -109,14 +109,9 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   console.log('call login' + JSON.stringify(req.body))
-
   const { error } = loginValidation(req.body)
   if (error) {
-    console.log('validation error')
-    console.log(error.details[0].message)
-    return res.status(403).send({
-      message: error.details[0].message
-    })
+    return res.status(422).json(error.details[0].message)
   }
 
   let user = await User.findOne({ email: req.body.email })
