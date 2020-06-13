@@ -55,7 +55,7 @@ router.post('/verifyUser', async (req, res) => {
     console.log(verified)
     if (verified) {
       User.findById(verified, (error, user) => {
-        if (res) {
+        if (user) {
           user.password = undefined
           res.send(user)
         } else {

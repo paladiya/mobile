@@ -19,7 +19,7 @@ router.post('/all', async (req, res) => {
   let find = {}
   if (_id !== 0) {
     find = { _id: { $lt: mongoose.Types.ObjectId(_id) } }
-  } 
+  }
   file
     .find(find)
     .sort({ _id: -1 })
@@ -42,18 +42,22 @@ router.post('/all', async (req, res) => {
 })
 
 router.post('/ringtones', async (req, res) => {
-  let pageNum = req.body.pageNum
-
+  let _id = req.body._id
+  let find = { types: 'music' }
+  if (_id !== 0) {
+    find = { ...find, _id: { $lt: mongoose.Types.ObjectId(_id) } }
+  }
   file
-    .find({ types: 'music' })
+    .find(find)
     .sort({ _id: -1 })
-    .skip((pageNum - 1) * pagination)
     .limit(pagination)
     .then(files => {
       console.log('files ', files.length)
 
       if (files.length > 0) {
-        res.status(200).json({ files: files, isLast: files.length < pagination })
+        res
+          .status(200)
+          .json({ files: files, isLast: files.length < pagination })
       } else {
         res.status(200).json({ message: 'No Record Found' })
       }
@@ -65,18 +69,22 @@ router.post('/ringtones', async (req, res) => {
 })
 
 router.post('/wallpaper', async (req, res) => {
-  let pageNum = req.body.pageNum
-
+  let _id = req.body._id
+  let find = { types: 'image' }
+  if (_id !== 0) {
+    find = { ...find, _id: { $lt: mongoose.Types.ObjectId(_id) } }
+  }
   file
-    .find({ types: 'image' })
+    .find(find)
     .sort({ _id: -1 })
-    .skip((pageNum - 1) * pagination)
     .limit(pagination)
     .then(files => {
       console.log('files ', files.length)
 
       if (files.length > 0) {
-        res.status(200).json({ files: files, isLast: files.length < pagination })
+        res
+          .status(200)
+          .json({ files: files, isLast: files.length < pagination })
       } else {
         res.status(200).json({ message: 'No Record Found' })
       }
@@ -106,7 +114,9 @@ router.post('/find', async (req, res) => {
       console.log('files ', files.length)
 
       if (files.length > 0) {
-        res.status(200).json({ files: files, isLast: files.length < pagination })
+        res
+          .status(200)
+          .json({ files: files, isLast: files.length < pagination })
       } else {
         res.status(200).json({ message: 'No Record Found' })
       }
