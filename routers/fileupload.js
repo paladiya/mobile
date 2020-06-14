@@ -31,13 +31,11 @@ router.post('/upload', async (req, res) => {
   const fileOriginName = req.body.fileOriginName
   const fileTags = req.body.fileTag.split(',')
   const userName = req.body.userName
-  console.log(fileOriginName)
   const jwtToken = req.header('auth-token')
   jwt.verify(jwtToken, process.env.JSON_SECRET, function (error, decoded) {
     if (!error) {
       let fileType = file.name.split('.').pop().toLowerCase()
       let newFileName = mongoose.Types.ObjectId() + '.' + fileType
-      console.log(image.includes(fileType))
       if (image.includes(fileType)) {
         fileType = 'image'
       } else if (video.includes(fileType)) {
@@ -46,7 +44,6 @@ router.post('/upload', async (req, res) => {
         fileType = 'music'
       } else {
         fileType = undefined
-        console.log('not valid ', fileType)
         return res
           .status(403)
           .json({ message: 'please select valid media image' })
@@ -54,7 +51,6 @@ router.post('/upload', async (req, res) => {
 
       file.mv(`uploads/${fileType}/${newFileName}`, async err => {
         if (err) {
-          console.error(err)
           return res.status(403).json({ msg: err })
         }
 
@@ -70,9 +66,7 @@ router.post('/upload', async (req, res) => {
         let savedFile
         try {
           savedFile = await newFile.save()
-          console.log('saved File ' + savedFile)
         } catch (error) {
-          console.log('file save eroor ', error)
           res.status(403).send(error)
         }
 
@@ -83,7 +77,6 @@ router.post('/upload', async (req, res) => {
         })
       })
     } else {
-      console.error(error)
       return res.status(401).json({ msg: 'you are not valid user' })
     }
     // err

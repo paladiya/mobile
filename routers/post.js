@@ -13,7 +13,6 @@ router.get('/', verifyToken, (req, res) => {
 })
 
 router.post('/all', async (req, res) => {
-  console.log('all = ', req.body)
 
   let _id = req.body._id
   let find = {}
@@ -25,7 +24,6 @@ router.post('/all', async (req, res) => {
     .sort({ _id: -1 })
     .limit(pagination)
     .then(files => {
-      console.log('files ', files.length)
 
       if (files.length > 0) {
         res
@@ -36,7 +34,6 @@ router.post('/all', async (req, res) => {
       }
     })
     .catch(error => {
-      console.log('catch', error)
       res.status(500).json({ message: error })
     })
 })
@@ -52,7 +49,6 @@ router.post('/ringtones', async (req, res) => {
     .sort({ _id: -1 })
     .limit(pagination)
     .then(files => {
-      console.log('files ', files.length)
 
       if (files.length > 0) {
         res
@@ -63,7 +59,6 @@ router.post('/ringtones', async (req, res) => {
       }
     })
     .catch(error => {
-      console.log('catch', error)
       res.status(500).json({ message: error })
     })
 })
@@ -79,7 +74,6 @@ router.post('/wallpaper', async (req, res) => {
     .sort({ _id: -1 })
     .limit(pagination)
     .then(files => {
-      console.log('files ', files.length)
 
       if (files.length > 0) {
         res
@@ -90,13 +84,11 @@ router.post('/wallpaper', async (req, res) => {
       }
     })
     .catch(error => {
-      console.log('catch', error)
       res.status(500).json({ message: error })
     })
 })
 
 router.post('/find', async (req, res) => {
-  console.log(req.body)
   let pageNum = req.body.pageNum
   const searchTerm = req.body.searchTerm
   file
@@ -111,7 +103,6 @@ router.post('/find', async (req, res) => {
     .skip((pageNum - 1) * pagination)
     .limit(pagination)
     .then(files => {
-      console.log('files ', files.length)
 
       if (files.length > 0) {
         res
@@ -122,13 +113,11 @@ router.post('/find', async (req, res) => {
       }
     })
     .catch(error => {
-      console.log('catch', error)
       res.status(500).json({ message: error })
     })
 })
 
 router.post('/byuser', verifyToken, async (req, res) => {
-  console.log('byuser', req.user)
   let pageNum = req.body.pageNum
 
   file
@@ -139,7 +128,6 @@ router.post('/byuser', verifyToken, async (req, res) => {
     .skip((pageNum - 1) * pagination)
     .limit(pagination)
     .then(files => {
-      console.log('files ', files.length)
 
       if (files.length > 0) {
         res.status(200).json({ files: files })
@@ -148,7 +136,6 @@ router.post('/byuser', verifyToken, async (req, res) => {
       }
     })
     .catch(error => {
-      console.log('catch', error)
       res.status(500).json({ message: error })
     })
 })
@@ -160,7 +147,6 @@ router.post('/getpost', async (req, res) => {
     const result = await file.findOne({
       _id: itemId
     })
-    console.log(result)
     if (result) {
       res.status(200).json({ post: result, status: 200 })
     } else {
@@ -185,19 +171,16 @@ router.post('/plusDownload', async (req, res) => {
 })
 
 router.post('/delete', verifyToken, async (req, res) => {
-  console.log('byuser', req.body)
   const id = req.body.id
   const result = await file.findByIdAndDelete({
     _id: id
   })
-  console.log(result)
   const path = `${__dirname}/../../front-end/public/uploads/${result.types}/${result.fileName}`
 
   try {
     fs.unlinkSync(path)
     //file removed
   } catch (err) {
-    console.error(err)
   }
   if (result) {
     res.status(200).json({ result: result })

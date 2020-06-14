@@ -7,7 +7,6 @@ const jwt = require('jsonwebtoken')
 // googleRegister
 
 router.post('/googleRegister', async (req, res) => {
-  console.log('call googleRegister' + JSON.stringify(req.body))
   // const { error } = registerValidation(req.body)
   // if (error) {
   //   return res.status(400).json(error.details[0].message)
@@ -15,7 +14,6 @@ router.post('/googleRegister', async (req, res) => {
 
   const emailExist = await User.findOne({ email: req.body.email })
   if (emailExist) {
-    console.log('emailExist ', emailExist)
 
     const token = jwt.sign({ _id: emailExist._id }, process.env.JSON_SECRET)
     return res
@@ -50,12 +48,10 @@ router.post('/googleRegister', async (req, res) => {
 router.post('/verifyUser', async (req, res) => {
   try {
     const token = req.body.jwt
-    console.log(token)
     if (!token) {
       return res.status(422).json('Data missing')
     }
     const verified = jwt.verify(token, process.env.JSON_SECRET)
-    console.log(verified)
     if (verified) {
       User.findById(verified, (error, user) => {
         if (user) {
@@ -69,13 +65,11 @@ router.post('/verifyUser', async (req, res) => {
       res.status(422).send('User not verified')
     }
   } catch (error) {
-    console.log(error)
     res.status(422).send(error)
   }
 })
 
 router.post('/register', async (req, res) => {
-  console.log('call register' + JSON.stringify(req.body))
   const { error } = registerValidation(req.body)
   if (error) {
     return res.status(422).json(error.details[0].message)
@@ -108,20 +102,17 @@ router.post('/register', async (req, res) => {
 })
 
 router.post('/login', async (req, res) => {
-  console.log('call login' + JSON.stringify(req.body))
   const { error } = loginValidation(req.body)
   if (error) {
     return res.status(422).json(error.details[0].message)
   }
 
   let user = await User.findOne({ email: req.body.email })
-  console.log(user)
   if (!user) {
     return res.status(403).json('Incorrect username or password.')
   }
   const validPass = await bcrypt.compare(req.body.password, user.password)
   if (!validPass) {
-    console.log('pass error')
 
     return res.status(403).json('Incorrect username or password.')
   }
