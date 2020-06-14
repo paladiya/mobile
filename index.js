@@ -9,7 +9,7 @@ const dotenv = require('dotenv').config()
 var compression = require('compression')
 const fs = require('fs')
 
-const port = 4000
+const port = 80
 options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
