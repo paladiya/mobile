@@ -130,7 +130,7 @@ router.post('/byuser', verifyToken, async (req, res) => {
     .then(files => {
 
       if (files.length > 0) {
-        res.status(200).json({ files: files })
+        res.status(200).json({ files: files, isLast: files.length < pagination })
       } else {
         res.status(200).json({ message: 'No Record Found' })
       }
