@@ -189,6 +189,17 @@ router.post('/delete', verifyToken, async (req, res) => {
   }
 })
 
+router.post('/seoItems',(req,res)=>{
+  file.find({}).then((result,error)=>{
+    if(result){
+      res.status(200).json(result)
+    }else{
+      res.status(500).json({ message: error })
+    }
+  })
+
+})
+
 router.get('/music', (req, res) => {
   res.send({ msg: 'musix test' })
 })
