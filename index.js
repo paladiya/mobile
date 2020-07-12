@@ -13,12 +13,11 @@ const port = 4000;
 options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  // auth: {
-  //   authSource: "admin",
-  // },
-  // ,
-  // user: "mobile",
-  // pass: "Gautampatel@0261",
+  auth: {
+    authSource: "admin",
+  },
+  user: "mobile",
+  pass: "Gautampatel@0261",
 };
 mongoose
   .connect(process.env.MONGO_DATABASE, options, () =>
