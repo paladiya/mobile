@@ -1,66 +1,67 @@
-const express = require('express')
-const fileUpload = require('express-fileupload')
-const app = express()
-const mongoose = require('mongoose').set('debug', true)
-const bodyParser = require('body-parser')
-const path = require('path')
-const morgan = require('morgan')
-const dotenv = require('dotenv').config()
-var compression = require('compression')
-const fs = require('fs')
+const express = require("express");
+const fileUpload = require("express-fileupload");
+const app = express();
+const mongoose = require("mongoose").set("debug", true);
+const bodyParser = require("body-parser");
+const path = require("path");
+const morgan = require("morgan");
+const dotenv = require("dotenv").config();
+var compression = require("compression");
+const fs = require("fs");
 
-const port = 4000
+const port = 4000;
 options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  auth: {
-    authSource: 'admin'
-  },
-  user: 'mobile',
-  pass: 'Gautampatel@0261'
-}
+  // auth: {
+  //   authSource: "admin",
+  // },
+  // ,
+  // user: "mobile",
+  // pass: "Gautampatel@0261",
+};
 mongoose
-  .connect(process.env.MONGODB_URI || process.env.MONGO_DATABASE, options, () =>
-    console.log('mongoconnected')
+  .connect(process.env.MONGO_DATABASE, options, () =>
+    console.log("mongoconnected")
   )
-  .catch(error => {
-    console.error('App starting error:', error.stack)
-    process.exit(1)
-  })
+  .catch((error) => {
+    console.log("mongoconnected not");
 
-const authRoutes = require('./routers/auth')
-const postRoutes = require('./routers/post')
-const fileRoutes = require('./routers/fileupload')
-const imageRoutes = require('./routers/imageManipulate')
-app.use(express.json())
+    console.error("App starting error:", error.stack);
+    process.exit(1);
+  });
 
-app.use(bodyParser.json({ type: 'application/json' }))
-app.use(bodyParser.urlencoded({ extended: false }))
+const authRoutes = require("./routers/auth");
+const postRoutes = require("./routers/post");
+const fileRoutes = require("./routers/fileupload");
+const imageRoutes = require("./routers/imageManipulate");
+app.use(express.json());
 
-app.use(morgan('dev'))
-app.use(compression())
+app.use(bodyParser.json({ type: "application/json" }));
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(morgan("dev"));
+app.use(compression());
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', '*')
-  next()
-})
-app.use(express.static('uploads'))
-app.use(fileUpload())
-app.use('/auth', authRoutes)
-app.use('/post', postRoutes)
-app.use('/file', fileRoutes)
-app.use('/image', imageRoutes)
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  next();
+});
+app.use(express.static("uploads"));
+app.use(fileUpload());
+app.use("/auth", authRoutes);
+app.use("/post", postRoutes);
+app.use("/file", fileRoutes);
+app.use("/image", imageRoutes);
 
-console.log(process.env.NODE_ENV)
+if (process.env.NODE_ENV === "production") {
+  console.log(process.env.NODE_ENV);
+  app.use(express.static(path.join(__dirname, "client/build")));
 
-if (process.env.NODE_ENV === 'production') {
-  console.log(process.env.NODE_ENV)
-  app.use(express.static(path.join(__dirname, 'client/build')))
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
-  })
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  });
 }
 
 // app.get('/image/:id', (req, res) => {
@@ -86,12 +87,12 @@ if (process.env.NODE_ENV === 'production') {
 // })
 
 app.use((error, req, res, next) => {
-  res.status(error.status || 500)
+  res.status(error.status || 500);
   res.json({
     error: {
-      message: error.message
-    }
-  })
-})
+      message: error.message,
+    },
+  });
+});
 
-app.listen(port, () => console.log('server running at ', port))
+app.listen(port, () => console.log("server running at ", port));
