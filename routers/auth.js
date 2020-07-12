@@ -132,7 +132,8 @@ router.post("/updateProfile", async (req, res) => {
   let fileType = file.name.split(".").pop().toLowerCase();
 
   if (file && userId) {
-    let newFileName = userId + "." + fileType;
+    // let newFileName = userId + "." + fileType;
+    let newFileName = userId;
 
     file.mv(`uploads/profile/${newFileName}`, async (err) => {
       if (err) {
