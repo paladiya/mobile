@@ -118,6 +118,7 @@ router.post("/login", async (req, res) => {
   const token = jwt.sign({ _id: user._id }, process.env.JSON_SECRET);
   user.password = undefined;
   user.date = undefined;
+  user.jwt = token;
   console.log(user);
   return res.status(200).send({
     user,
