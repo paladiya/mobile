@@ -122,6 +122,7 @@ router.post("/login", async (req, res) => {
   console.log(user);
   return res.status(200).send({
     user,
+    jwt: token,
   });
 });
 
