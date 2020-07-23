@@ -109,6 +109,65 @@ router.post("/wallpaper", async (req, res) => {
     });
 });
 
+router.post("/findInRingtones", async (req, res) => {
+  let pageNum = req.body.pageNum;
+  const searchTerm = req.body.searchTerm;
+  file
+    .find({
+      $or: [
+        { fileOriginName: { $regex: searchTerm, $options: "i" } },
+        { fileTags: { $in: [searchTerm] } },
+        { userName: { $regex: searchTerm, $options: "i" } },
+      ],
+      $and: [{ types: "music" }],
+    })
+    .sort({ _id: -1 })
+    .skip((pageNum - 1) * pagination)
+    .limit(pagination)
+    .then((files) => {
+      if (files.length > 0) {
+        res
+          .status(200)
+          .json({ files: files, isLast: files.length < pagination });
+      } else {
+        res.status(200).json({ message: "No Record Found" });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ message: error });
+    });
+});
+
+router.post("/findInWallpapers", async (req, res) => {
+  console.log("call");
+  let pageNum = req.body.pageNum;
+  const searchTerm = req.body.searchTerm;
+  file
+    .find({
+      $or: [
+        { fileOriginName: { $regex: searchTerm, $options: "i" } },
+        { fileTags: { $in: [searchTerm] } },
+        { userName: { $regex: searchTerm, $options: "i" } },
+      ],
+      $and: [{ types: "image" }],
+    })
+    .sort({ _id: -1 })
+    .skip((pageNum - 1) * pagination)
+    .limit(pagination)
+    .then((files) => {
+      if (files.length > 0) {
+        res
+          .status(200)
+          .json({ files: files, isLast: files.length < pagination });
+      } else {
+        res.status(200).json({ message: "No Record Found" });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ message: error });
+    });
+});
+
 router.post("/find", async (req, res) => {
   let pageNum = req.body.pageNum;
   const searchTerm = req.body.searchTerm;
