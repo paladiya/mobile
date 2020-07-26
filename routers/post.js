@@ -168,6 +168,38 @@ router.post("/findInWallpapers", async (req, res) => {
     });
 });
 
+router.post("/findRelatedWallpapers", (req, res) => {
+  console.log("findRelatedWallpapers");
+  let pageNum = req.body.pageNum;
+  const tags = req.body.tags;
+  console.log(tags);
+  try {
+    file
+      .find({
+        $or: [{ fileTags: { $in: tags } }],
+        $and: [{ types: "image" }],
+      })
+      .sort({ _id: -1 })
+      .skip((pageNum - 1) * pagination)
+      .limit(pagination)
+      .then((files) => {
+        console.log("run");
+        if (files.length > 0) {
+          res
+            .status(200)
+            .json({ files: files, isLast: files.length < pagination });
+        } else {
+          res.status(200).json({ message: "No Record Found" });
+        }
+      })
+      .catch((error) => {
+        res.status(500).json({ message: error });
+      });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.post("/find", async (req, res) => {
   let pageNum = req.body.pageNum;
   const searchTerm = req.body.searchTerm;
