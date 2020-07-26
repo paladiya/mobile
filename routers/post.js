@@ -169,11 +169,11 @@ router.post("/findInWallpapers", async (req, res) => {
 });
 
 router.post("/findRelatedWallpapers", (req, res) => {
-  console.log("findRelatedWallpapers");
-  let pageNum = req.body.pageNum;
-  const tags = JSON.parse(req.body.tags);
-  console.log(tags);
   try {
+    console.log("findRelatedWallpapers");
+    let pageNum = req.body.pageNum;
+    const tags = JSON.parse(req.body.tags);
+    console.log(tags);
     file
       .find({ fileTags: { $in: tags }, types: "image" })
       .sort({ _id: -1 })
