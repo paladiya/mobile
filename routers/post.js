@@ -171,11 +171,11 @@ router.post("/findInWallpapers", async (req, res) => {
 router.post("/findRelatedWallpapers", (req, res) => {
   console.log("findRelatedWallpapers");
   let pageNum = req.body.pageNum;
-  const tags = req.body.tags;
+  const tags = JSON.parse(req.body.tags);
   console.log(tags);
   try {
     file
-      .find({ fileTags: { $in: JSON.parse(tags) }, types: "image" })
+      .find({ fileTags: { $in: tags }, types: "image" })
       .sort({ _id: -1 })
       .skip((pageNum - 1) * pagination)
       .limit(pagination)
