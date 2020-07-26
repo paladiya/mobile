@@ -175,7 +175,7 @@ router.post("/findRelatedWallpapers", (req, res) => {
   console.log(tags);
   try {
     file
-      .find({ fileTags: { $in: tags }, types: "image" })
+      .find({ fileTags: { $in: JSON.parse(tags) }, types: "image" })
       .sort({ _id: -1 })
       .skip((pageNum - 1) * pagination)
       .limit(pagination)
