@@ -172,7 +172,7 @@ router.post("/findRelatedWallpapers", (req, res) => {
   try {
     console.log("findRelatedWallpapers");
     let pageNum = req.body.pageNum;
-    const tags = JSON.parse(req.body.tags);
+    const tags = req.body.tags;
     console.log(tags);
     file
       .find({ fileTags: { $in: tags }, types: "image" })
