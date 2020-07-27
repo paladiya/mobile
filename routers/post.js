@@ -197,6 +197,54 @@ router.post("/findRelatedWallpapers", (req, res) => {
   }
 });
 
+router.post("/findRingtoneById", (req, res) => {
+  try {
+    console.log("findRingtoneById");
+    const ids = req.body.searchList;
+    console.log(tags);
+    file
+      .find({ _id: { $in: ids }, types: "music" })
+      .sort({ _id: -1 })
+      .then((files) => {
+        console.log("run");
+        if (files.length > 0) {
+          res.status(200).json({ files: files, isLast: true });
+        } else {
+          res.status(200).json({ message: "No Record Found" });
+        }
+      })
+      .catch((error) => {
+        res.status(500).json({ message: error });
+      });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/findWallpaperById", (req, res) => {
+  try {
+    console.log("findWallpaperById");
+    const ids = req.body.searchList;
+    console.log(tags);
+    file
+      .find({ _id: { $in: ids }, types: "image" })
+      .sort({ _id: -1 })
+      .then((files) => {
+        console.log("run");
+        if (files.length > 0) {
+          res.status(200).json({ files: files, isLast: true });
+        } else {
+          res.status(200).json({ message: "No Record Found" });
+        }
+      })
+      .catch((error) => {
+        res.status(500).json({ message: error });
+      });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.post("/find", async (req, res) => {
   let pageNum = req.body.pageNum;
   const searchTerm = req.body.searchTerm;
