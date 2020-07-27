@@ -200,7 +200,7 @@ router.post("/findRelatedWallpapers", (req, res) => {
 router.post("/findRingtoneById", (req, res) => {
   try {
     console.log("findRingtoneById");
-    const ids = JSON.parse(req.body.searchList);
+    const ids = req.body.searchList;
     console.log(ids);
     file
       .find({ _id: { $in: ids }, types: "music" })
@@ -224,7 +224,7 @@ router.post("/findRingtoneById", (req, res) => {
 router.post("/findWallpaperById", (req, res) => {
   try {
     console.log("findWallpaperById");
-    const ids = JSON.parse(req.body.searchList);
+    const ids = req.body.searchList;
     console.log(ids);
     file
       .find({ _id: { $in: ids }, types: "image" })
