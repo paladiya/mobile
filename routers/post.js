@@ -201,7 +201,6 @@ router.post("/findRingtoneById", (req, res) => {
   try {
     console.log("findRingtoneById");
     const ids = req.body.searchList;
-    console.log(tags);
     file
       .find({ _id: { $in: ids }, types: "music" })
       .sort({ _id: -1 })
@@ -225,7 +224,6 @@ router.post("/findWallpaperById", (req, res) => {
   try {
     console.log("findWallpaperById");
     const ids = req.body.searchList;
-    console.log(tags);
     file
       .find({ _id: { $in: ids }, types: "image" })
       .sort({ _id: -1 })
