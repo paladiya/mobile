@@ -69,6 +69,7 @@ router.post("/verifyUser", async (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
+  console.log("register");
   const { error } = registerValidation(req.body);
   if (error) {
     return res.status(422).json(error.details[0].message);

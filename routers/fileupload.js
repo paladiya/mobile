@@ -15,13 +15,6 @@ function isValidFileType(fName, fType) {
 }
 
 router.post("/upload", async (req, res) => {
-  let path;
-  if (process.env.NODE_ENV === "production") {
-    let path = `${__dirname}/../../front-end/`;
-  } else {
-    let path = `${__dirname}/../../front-end/`;
-  }
-
   if (req.files == null) {
     return res.status(403).json({ message: "no files uploaded" });
   }
@@ -34,11 +27,11 @@ router.post("/upload", async (req, res) => {
     if (!error) {
       let fileType = file.name.split(".").pop().toLowerCase();
       let newFileName = mongoose.Types.ObjectId() + "." + fileType;
-      if (image.includes(fileType)) {
+      if (file.type.toLowerCase().indexOf("image") > -1) {
         fileType = "image";
-      } else if (video.includes(fileType)) {
+      } else if (file.type.toLowerCase().indexOf("video") > -1) {
         fileType = "video";
-      } else if (music.includes(fileType)) {
+      } else if (file.type.toLowerCase().indexOf("audio") > -1) {
         fileType = "music";
       } else {
         fileType = undefined;

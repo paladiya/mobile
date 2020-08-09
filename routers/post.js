@@ -38,6 +38,7 @@ router.post("/userDownload", (req, res) => {
 });
 
 router.post("/all", async (req, res) => {
+  console.log("all");
   let _id = req.body._id;
   let find = {};
   if (_id !== 0) {

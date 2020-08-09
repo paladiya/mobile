@@ -20,9 +20,10 @@ options = {
   pass: "Gautampatel@0261",
 };
 mongoose
-  .connect(process.env.MONGO_DATABASE, options, () =>
-    console.log("mongoconnected")
-  )
+  .connect(process.env.MONGO_DATABASE, options, (text) => {
+    console.log("mongoconnected");
+    console.log(text);
+  })
   .catch((error) => {
     console.log("mongoconnected not");
 
