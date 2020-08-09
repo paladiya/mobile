@@ -15,23 +15,28 @@ function isValidFileType(fName, fType) {
 }
 
 router.post("/upload", async (req, res) => {
+  console.log("upload");
   if (req.files == null) {
     return res.status(403).json({ message: "no files uploaded" });
   }
+
   const file = req.files.file;
   const fileOriginName = req.body.fileOriginName;
   const fileTags = req.body.fileTag.split(",");
   const userName = req.body.userName;
   const jwtToken = req.header("auth-token");
+  console.log(file);
+  console.log(req.body.fileType);
+
   jwt.verify(jwtToken, process.env.JSON_SECRET, function (error, decoded) {
     if (!error) {
       let fileType = file.name.split(".").pop().toLowerCase();
       let newFileName = mongoose.Types.ObjectId() + "." + fileType;
-      if (file.type.toLowerCase().indexOf("image") > -1) {
+      if (req.body.fileType == "image") {
         fileType = "image";
-      } else if (file.type.toLowerCase().indexOf("video") > -1) {
+      } else if (req.body.fileType == "video") {
         fileType = "video";
-      } else if (file.type.toLowerCase().indexOf("audio") > -1) {
+      } else if (req.body.fileType == "audio") {
         fileType = "music";
       } else {
         fileType = undefined;
