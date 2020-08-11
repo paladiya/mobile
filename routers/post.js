@@ -333,10 +333,17 @@ router.post("/delete", verifyToken, async (req, res) => {
   const result = await file.findByIdAndDelete({
     _id: id,
   });
-  const path = `${__dirname}/../../front-end/public/uploads/${result.types}/${result.fileName}`;
-
+  const path = `${__dirname}/../uploads/${result.types}/${result.fileName}`;
+  console.log(path);
   try {
-    fs.unlinkSync(path);
+    fs.unlink(path, (err) => {
+      console.log("call");
+      if (err) {
+        console.log("Delete error: " + err);
+      } else {
+        console.log("file deleted successfully");
+      }
+    });
     //file removed
   } catch (err) {}
   if (result) {
