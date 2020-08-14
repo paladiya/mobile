@@ -298,6 +298,56 @@ router.post("/byuser", verifyToken, async (req, res) => {
     });
 });
 
+router.post("/byuserImage", verifyToken, async (req, res) => {
+  let pageNum = req.body.pageNum;
+
+  file
+    .find({
+      userId: req.user._id,
+      types: "image",
+    })
+    .sort({ _id: -1 })
+    .skip((pageNum - 1) * pagination)
+    .limit(pagination)
+    .then((files) => {
+      if (files.length > 0) {
+        res
+          .status(200)
+          .json({ files: files, isLast: files.length < pagination });
+      } else {
+        res.status(200).json({ message: "No Record Found" });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ message: error });
+    });
+});
+
+router.post("/byuserMusic", verifyToken, async (req, res) => {
+  let pageNum = req.body.pageNum;
+
+  file
+    .find({
+      userId: req.user._id,
+      types: "music",
+    })
+    .sort({ _id: -1 })
+    .skip((pageNum - 1) * pagination)
+    .limit(pagination)
+    .then((files) => {
+      if (files.length > 0) {
+        res
+          .status(200)
+          .json({ files: files, isLast: files.length < pagination });
+      } else {
+        res.status(200).json({ message: "No Record Found" });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ message: error });
+    });
+});
+
 router.post("/getpost", async (req, res) => {
   try {
     const itemId = req.body.itemId;
