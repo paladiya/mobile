@@ -72,12 +72,12 @@ router.post("/register", async (req, res) => {
   console.log("register");
   const { error } = registerValidation(req.body);
   if (error) {
-    return res.status(422).json(error.details[0].message);
+    return res.status(403).json(error.details[0].message);
   }
 
   const emailExist = await User.findOne({ email: req.body.email });
   if (emailExist) {
-    return res.status(422).send({
+    return res.status(403).send({
       message: `${req.body.email} is already taken`,
     });
   }
@@ -93,9 +93,10 @@ router.post("/register", async (req, res) => {
   try {
     var savedUser = await user.save();
     const token = jwt.sign({ _id: savedUser._id }, process.env.JSON_SECRET);
-    res.status(200).send({ user: { ...savedUser, password: token } });
+    savedUser.password = token;
+    res.status(200).send({ user: savedUser });
   } catch (error) {
-    return res.status(422).send({
+    return res.status(403).send({
       message: error,
     });
   }
@@ -104,7 +105,7 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { error } = loginValidation(req.body);
   if (error) {
-    return res.status(422).json(error.details[0].message);
+    return res.status(403).json(error.details[0].message);
   }
 
   let user = await User.findOne({ email: req.body.email });
