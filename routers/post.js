@@ -198,6 +198,35 @@ router.post("/findRelatedWallpapers", (req, res) => {
   }
 });
 
+router.post("/findRelatedRingtones", (req, res) => {
+  try {
+    console.log("findRelatedRingtones");
+    let pageNum = req.body.pageNum;
+    const tags = req.body.tags;
+    console.log(tags);
+    file
+      .find({ fileTags: { $in: tags }, types: "music" })
+      .sort({ _id: -1 })
+      .skip((pageNum - 1) * pagination)
+      .limit(pagination)
+      .then((files) => {
+        console.log("run");
+        if (files.length > 0) {
+          res
+            .status(200)
+            .json({ files: files, isLast: files.length < pagination });
+        } else {
+          res.status(200).json({ message: "No Record Found" });
+        }
+      })
+      .catch((error) => {
+        res.status(500).json({ message: error });
+      });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.post("/findRingtoneById", (req, res) => {
   try {
     console.log("findRingtoneById");

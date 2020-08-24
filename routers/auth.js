@@ -72,7 +72,7 @@ router.post("/register", async (req, res) => {
   console.log("register");
   const { error } = registerValidation(req.body);
   if (error) {
-    return res.status(403).json(error.details[0].message);
+    return res.status(403).send({ message: error.details[0].message });
   }
 
   const emailExist = await User.findOne({ email: req.body.email });
