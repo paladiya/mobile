@@ -4,10 +4,7 @@ const app = express();
 const mongoose = require("mongoose").set("debug", true);
 const bodyParser = require("body-parser");
 const path = require("path");
-const morgan = require("morgan");
-const dotenv = require("dotenv").config();
 var compression = require("compression");
-const fs = require("fs");
 
 const port = 4000;
 options = {
@@ -34,13 +31,12 @@ mongoose
 const authRoutes = require("./routers/auth");
 const postRoutes = require("./routers/post");
 const fileRoutes = require("./routers/fileupload");
-const imageRoutes = require("./routers/imageManipulate");
 app.use(express.json());
 
 app.use(bodyParser.json({ type: "application/json" }));
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(morgan("dev"));
+// app.use(morgan("dev"));
 app.use(compression());
 
 app.use((req, res, next) => {

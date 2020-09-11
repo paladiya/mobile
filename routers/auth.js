@@ -121,7 +121,6 @@ router.post("/login", async (req, res) => {
   user.password = undefined;
   user.date = undefined;
   user.jwt = token;
-  console.log(user);
   return res.status(200).send({
     user,
     jwt: token,

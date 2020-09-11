@@ -27,16 +27,12 @@ router.post("/upload", async (req, res) => {
   const fileTags = req.body.fileTag.split(",");
   const userName = req.body.userName;
   const jwtToken = req.header("auth-token");
-  console.log("file", file);
-  console.log(req.body);
 
   jwt.verify(jwtToken, process.env.JSON_SECRET, function (error, decoded) {
-    console.log("err", error);
     if (!error) {
       let fileType = file.name.split(".").pop().toLowerCase();
 
       let newFileName = mongoose.Types.ObjectId() + "." + fileType;
-      console.log("1", req.body.fileType);
 
       if (req.body.fileType == "image") {
         fileType = "image";
@@ -50,7 +46,6 @@ router.post("/upload", async (req, res) => {
           .status(403)
           .json({ message: "please select valid media image" });
       }
-      console.log("2", fileType);
 
       file.mv(`uploads/${fileType}/${newFileName}`, async (err) => {
         if (err) {

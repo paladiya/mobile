@@ -4,8 +4,6 @@ const file = require("../models/File");
 const mongoose = require("mongoose");
 const fs = require("fs");
 const pagination = 24;
-const Auth = require("../auth");
-const e = require("express");
 const musicCat = [];
 const wallCat = [];
 
@@ -15,12 +13,8 @@ router.get("/", verifyToken, (req, res) => {
 
 router.post("/userDownload", (req, res) => {
   const userId = req.body.userId;
-  console.log(userId);
-  console.log("userDownload");
 
   file.find({ userId: userId }).then((files, notFound) => {
-    console.log(files);
-    console.log(notFound);
     let download = 0;
     let downloadCount = 0;
     let upload = 0;
@@ -38,7 +32,6 @@ router.post("/userDownload", (req, res) => {
 });
 
 router.post("/all", async (req, res) => {
-  console.log("all");
   let _id = req.body._id;
   let find = {};
   if (_id !== 0) {
@@ -140,7 +133,6 @@ router.post("/findInRingtones", async (req, res) => {
 });
 
 router.post("/findInWallpapers", async (req, res) => {
-  console.log("call");
   let pageNum = req.body.pageNum;
   const searchTerm = req.body.searchTerm;
   file
@@ -171,17 +163,14 @@ router.post("/findInWallpapers", async (req, res) => {
 
 router.post("/findRelatedWallpapers", (req, res) => {
   try {
-    console.log("findRelatedWallpapers");
     let pageNum = req.body.pageNum;
     const tags = req.body.tags;
-    console.log(tags);
     file
       .find({ fileTags: { $in: tags }, types: "image" })
       .sort({ _id: -1 })
       .skip((pageNum - 1) * pagination)
       .limit(pagination)
       .then((files) => {
-        console.log("run");
         if (files.length > 0) {
           res
             .status(200)
@@ -193,24 +182,19 @@ router.post("/findRelatedWallpapers", (req, res) => {
       .catch((error) => {
         res.status(500).json({ message: error });
       });
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 });
 
 router.post("/findRelatedRingtones", (req, res) => {
   try {
-    console.log("findRelatedRingtones");
     let pageNum = req.body.pageNum;
     const tags = req.body.tags;
-    console.log(tags);
     file
       .find({ fileTags: { $in: tags }, types: "music" })
       .sort({ _id: -1 })
       .skip((pageNum - 1) * pagination)
       .limit(pagination)
       .then((files) => {
-        console.log("run");
         if (files.length > 0) {
           res
             .status(200)
@@ -222,21 +206,16 @@ router.post("/findRelatedRingtones", (req, res) => {
       .catch((error) => {
         res.status(500).json({ message: error });
       });
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 });
 
 router.post("/findRingtoneById", (req, res) => {
   try {
-    console.log("findRingtoneById");
     const ids = req.body.searchList;
-    console.log(ids);
     file
       .find({ _id: { $in: ids }, types: "music" })
       .sort({ _id: -1 })
       .then((files) => {
-        console.log("run");
         if (files.length > 0) {
           res.status(200).json({ files: files, isLast: true });
         } else {
@@ -246,21 +225,16 @@ router.post("/findRingtoneById", (req, res) => {
       .catch((error) => {
         res.status(500).json({ message: error });
       });
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 });
 
 router.post("/findWallpaperById", (req, res) => {
   try {
-    console.log("findWallpaperById");
     const ids = req.body.searchList;
-    console.log(ids);
     file
       .find({ _id: { $in: ids }, types: "image" })
       .sort({ _id: -1 })
       .then((files) => {
-        console.log("run");
         if (files.length > 0) {
           res.status(200).json({ files: files, isLast: true });
         } else {
@@ -270,9 +244,7 @@ router.post("/findWallpaperById", (req, res) => {
       .catch((error) => {
         res.status(500).json({ message: error });
       });
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 });
 
 router.post("/find", async (req, res) => {
@@ -413,16 +385,8 @@ router.post("/delete", verifyToken, async (req, res) => {
     _id: id,
   });
   const path = `${__dirname}/../uploads/${result.types}/${result.fileName}`;
-  console.log(path);
   try {
-    fs.unlink(path, (err) => {
-      console.log("call");
-      if (err) {
-        console.log("Delete error: " + err);
-      } else {
-        console.log("file deleted successfully");
-      }
-    });
+    fs.unlink(path, (err) => {});
     //file removed
   } catch (err) {}
   if (result) {
