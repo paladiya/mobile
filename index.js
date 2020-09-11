@@ -40,25 +40,25 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(morgan("dev"));
 app.use(compression());
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "*");
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "*");
+//   next();
+// });
 app.use(express.static("uploads"));
 app.use(fileUpload());
 app.use("/auth", authRoutes);
 app.use("/post", postRoutes);
 app.use("/file", fileRoutes);
 
-if (process.env.NODE_ENV === "production") {
-  console.log(process.env.NODE_ENV);
-  app.use(express.static(path.join(__dirname, "client/build")));
+// if (process.env.NODE_ENV === "production") {
+//   console.log(process.env.NODE_ENV);
+//   app.use(express.static(path.join(__dirname, "client/build")));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-  });
-}
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+//   });
+// }
 
 // app.get('/image/:id', (req, res) => {
 //   console.log('Home page visited!')
