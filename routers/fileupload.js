@@ -2,6 +2,8 @@ const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const File = require("../models/File");
 var mongoose = require("mongoose");
+const sharp = require("sharp");
+const path = require("path");
 
 var extensionLists = {}; //Create an object for all extension lists
 // var video = ['m4v', 'avi', 'mpg', 'mp4', 'webm']
@@ -53,6 +55,19 @@ router.post("/upload", async (req, res) => {
       file.mv(`uploads/${fileType}/${newFileName}`, async (err) => {
         if (err) {
           return res.status(403).json({ msg: err });
+        }
+
+        if (fileType === "image") {
+          await sharp(path.join(__dirname, `/../uploads/image/${newFileName}`))
+            .resize(250, 300)
+            .toFile(
+              path.join(__dirname, `/../uploads/resize/${newFileName}`),
+              function (imgError) {
+                if (imgError) {
+                  res.status(403).json({ msg: imgError });
+                }
+              }
+            );
         }
 
         const newFile = new File({
