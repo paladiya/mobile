@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require("mongoose").set("debug", true);
 const bodyParser = require("body-parser");
 const path = require("path");
+const dotenv = require("dotenv").config();
 var compression = require("compression");
 
 const port = 4000;
