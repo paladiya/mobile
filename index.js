@@ -50,7 +50,6 @@ app.use(fileUpload());
 app.use("/auth", authRoutes);
 app.use("/post", postRoutes);
 app.use("/file", fileRoutes);
-app.use("/image", imageRoutes);
 
 if (process.env.NODE_ENV === "production") {
   console.log(process.env.NODE_ENV);
