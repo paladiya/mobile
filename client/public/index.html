@@ -1,55 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
-		<!-- Google site verification -->
-	<!--	<meta name="google-site-verification" content="cbx-gY8vD5b-RYe2JvPbDi5BV-PGWM1DjoSy-o5yzcU" /> -->
-	<meta name="google-site-verification" content="sDO0yPIrhn6NLlOnkqXJBV28J1I0-S-BO9YE1xhbjoE" />
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141534466-3"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag() {
-				dataLayer.push(arguments);
-			}
-			gtag('js', new Date());
+  <head>
+    <meta charset="utf-8" />
+    <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
+    <!-- Google site verification -->
+    <!--	<meta name="google-site-verification" content="cbx-gY8vD5b-RYe2JvPbDi5BV-PGWM1DjoSy-o5yzcU" /> -->
+    <meta
+      name="google-site-verification"
+      content="sDO0yPIrhn6NLlOnkqXJBV28J1I0-S-BO9YE1xhbjoE"
+    />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-141534466-3"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-			gtag('config', 'UA-141534466-3');
-		</script>
+      gtag("config", "UA-141534466-3");
+    </script>
 
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#000000" />
-		<meta
-			name="description"
-			content="Download free ringtones, HD wallpapers, backgrounds, icons and games to personalize your cell phone or mobile device using the <em>Mobile69</em>"
-		/>
-		<link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-		<title>Mobile69</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Download free ringtones, HD wallpapers, backgrounds, icons and games to personalize your cell phone or mobile device using the <em>Mobile69</em>"
+    />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <title>Mobile69</title>
 
-		<script src="https://unpkg.com/wavesurfer.js"></script>
-		<script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.regions.min.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.regions.min.js"></script>
 
-		<script src="./dist/worker.js" type="text/js-worker" x-audio-encode></script>
-		<script src="./dist/index.js"></script>
+    <script
+      src="./dist/worker.js"
+      type="text/js-worker"
+      x-audio-encode
+    ></script>
+    <script src="./dist/index.js"></script>
 
-		<!-- <title>$OG_TITLE</title>
+    <!-- <title>$OG_TITLE</title>
 		<meta name="description" content="$OG_DESCRIPTION" />
 		<meta property="og:title" content="$OG_TITLE" />
 		<meta property="og:description" content="$OG_DESCRIPTION" />
 		<meta property="og:image" content="$OG_IMAGE" /> -->
 
-		<!-- Primary Meta Tags -->
-		<!-- <meta name="title" content="Free Latest Ringtones and Wallaper" />
+    <!-- Primary Meta Tags -->
+    <!-- <meta name="title" content="Free Latest Ringtones and Wallaper" />
 		<meta
 			name="description"
 			content="Download free Latest Ringtones and HD, mobile,  wallaper  Free on Mobile69. billion s of popular wallpaper and ringtones on <em>Mobile69</em> personalize your phone to suit you Browse our Content for free :)"
 		/>
 		<meta property="og:image" itemprop="image" content="%PUBLIC_URL%/original.png" /> -->
 
-		<!-- Open Graph / Facebook -->
-		<!-- <meta property="og:type" content="website" />
-		<meta property="og:url" content="http://mobile69.in/" />
+    <!-- Open Graph / Facebook -->
+    <!-- <meta property="og:type" content="website" />
+		<meta property="og:url" content="http://mobile69.net/" />
 		<meta property="og:title" content="Free Latest Ringtones and Wallaper" />
 		<meta
 			property="og:description"
@@ -57,9 +67,9 @@
 		/>
 		<meta property="og:image" content="%PUBLIC_URL%/original.png" /> -->
 
-		<!-- Twitter -->
-		<!-- <meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content="http://mobile69.in/" />
+    <!-- Twitter -->
+    <!-- <meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="http://mobile69.net/" />
 		<meta property="twitter:title" content="Free Latest Ringtones and Wallaper" />
 		<meta
 			property="twitter:description"
@@ -70,62 +80,62 @@
 			content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png"
 		/> -->
 
-		<style>
-			body {
-				margin: 0;
-				padding: 0;
-			}
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
 
-			.root:not(:empty) + .loader-container {
-				display: none;
-			}
+      .root:not(:empty) + .loader-container {
+        display: none;
+      }
 
-			.loader-container {
-				width: 100vw;
-				height: 100vh;
-				display: flex;
-				overflow: hidden;
-			}
+      .loader-container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        overflow: hidden;
+      }
 
-			.loader {
-				margin: auto;
-				border: 5px dotted #dadada;
-				border-top: 5px solid #3498db;
-				border-radius: 50%;
-				width: 100px;
-				height: 100px;
-				-webkit-animation: spin 2s linear infinite;
-				animation: spin 2s linear infinite;
-			}
+      .loader {
+        margin: auto;
+        border: 5px dotted #dadada;
+        border-top: 5px solid #3498db;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+      }
 
-			@-webkit-keyframes spin {
-				0% {
-					-webkit-transform: rotate(0deg);
-				}
+      @-webkit-keyframes spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+        }
 
-				100% {
-					-webkit-transform: rotate(360deg);
-				}
-			}
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
 
-			@keyframes spin {
-				0% {
-					transform: rotate(0deg);
-				}
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
 
-				100% {
-					transform: rotate(360deg);
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<noscript>You need to enable JavaScript to run this app.</noscript>
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
 
-		<div id="root">
-			<div class="loader-container">
-				<div class="loader"></div>
-			</div>
-		</div>
-	</body>
+    <div id="root">
+      <div class="loader-container">
+        <div class="loader"></div>
+      </div>
+    </div>
+  </body>
 </html>
