@@ -406,6 +406,16 @@ router.post("/seoItems", (req, res) => {
   });
 });
 
+router.post("/getId", (req, res) => {
+  file.find({}).select("_id").then((result, error) => {
+    if (result) {
+      res.status(200).json(result);
+    } else {
+      res.status(500).json({ message: error });
+    }
+  });
+});
+
 router.get("/music", (req, res) => {
   res.send({ msg: "musix test" });
 });
