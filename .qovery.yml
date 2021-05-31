@@ -1,0 +1,15 @@
+---
+application:
+  name: "mobile69-backend"
+  project: "first"
+  organization: "QoveryCommunity"
+databases:
+- type: "MONGODB"
+  name: "zedge"
+  version: "4.4"
+routers:
+- name: "main-mobile69-backend"
+  routes:
+  - application_name: "mobile69-backend"
+    paths:
+    - "/*"
